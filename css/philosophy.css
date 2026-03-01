@@ -1,0 +1,101 @@
+.canvas-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 0;
+    background: #0a0a0a;
+    pointer-events: none;
+    /* Let clicks pass through to sections below if needed */
+}
+
+.ph-main {
+    position: relative;
+    z-index: 1;
+    /* Place above the canvas for text interactivity */
+    pointer-events: none;
+    /* Let pointer events through main container */
+}
+
+.ph-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 0 12%;
+    pointer-events: auto;
+    /* Re-enable for section content */
+}
+
+/* Add some padding to the first section so it's not hidden behind header */
+.ph-section#sec1 {
+    padding-top: 80px;
+}
+
+.ph-content {
+    max-width: 550px;
+    background: rgba(10, 10, 10, 0.2);
+    padding: 2.5rem;
+    border-radius: 4px;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.ph-content.right-align {
+    margin-left: auto;
+    text-align: right;
+}
+
+.ph-content.center-align {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.ph-title {
+    font-size: 4rem;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+    font-weight: normal;
+    line-height: 1.1;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+}
+
+.ph-desc {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 400;
+}
+
+/* Custom fade-in config for philosophy page */
+.ph-content.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+}
+
+.ph-content.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (max-width: 900px) {
+    .ph-title {
+        font-size: 3rem;
+    }
+
+    .ph-content {
+        padding: 1.5rem;
+        background: rgba(10, 10, 10, 0.4);
+    }
+
+    .ph-section {
+        padding: 0 5%;
+        justify-content: center;
+    }
+
+    .ph-content.right-align {
+        text-align: left;
+        margin-left: 0;
+    }
+}
