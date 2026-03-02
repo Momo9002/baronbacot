@@ -7,15 +7,12 @@
     z-index: 0;
     background: #0a0a0a;
     pointer-events: none;
-    /* Let clicks pass through to sections below if needed */
 }
 
 .ph-main {
     position: relative;
     z-index: 1;
-    /* Place above the canvas for text interactivity */
     pointer-events: none;
-    /* Let pointer events through main container */
 }
 
 .ph-section {
@@ -24,10 +21,8 @@
     align-items: center;
     padding: 0 12%;
     pointer-events: auto;
-    /* Re-enable for section content */
 }
 
-/* Add some padding to the first section so it's not hidden behind header */
 .ph-section#sec1 {
     padding-top: 80px;
 }
@@ -67,7 +62,6 @@
     font-weight: 400;
 }
 
-/* Custom fade-in config for philosophy page */
 .ph-content.fade-in {
     opacity: 0;
     transform: translateY(30px);
@@ -79,6 +73,495 @@
     transform: translateY(0);
 }
 
+/* ============================================
+   COLLECTIBLES SECTION
+   ============================================ */
+
+@keyframes float-a {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-14px);
+    }
+}
+
+@keyframes float-b {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes float-c {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-16px);
+    }
+}
+
+@keyframes flicker {
+
+    0%,
+    100% {
+        transform: scaleY(1) scaleX(1);
+        opacity: 1;
+    }
+
+    33% {
+        transform: scaleY(1.12) scaleX(0.88);
+        opacity: 0.85;
+    }
+
+    66% {
+        transform: scaleY(0.92) scaleX(1.08);
+        opacity: 1;
+    }
+}
+
+@keyframes gold-pulse {
+
+    0%,
+    100% {
+        opacity: 0.6;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+.ph-collectibles {
+    position: relative;
+    z-index: 2;
+    pointer-events: auto;
+    padding: 8rem 6% 6rem;
+    background: rgba(30, 10, 10, 0.6);
+    outline: 2px solid rgba(149, 8, 8, 0.4);
+}
+
+.coll-header {
+    text-align: center;
+    margin-bottom: 5rem;
+}
+
+.coll-label {
+    display: block;
+    font-family: var(--font-ui), sans-serif;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.35em;
+    color: #950808;
+    margin-bottom: 1.2rem;
+}
+
+.coll-title {
+    font-size: 3.5rem;
+    color: #ffffff;
+    font-weight: normal;
+    margin-bottom: 1.2rem;
+    line-height: 1.1;
+}
+
+.coll-sub {
+    font-size: 0.95rem;
+    line-height: 1.9;
+    color: rgba(255, 255, 255, 0.55);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.coll-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.coll-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* ── OBJECT WRAPPERS ── */
+.coll-object {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    height: 220px;
+    margin-bottom: 2rem;
+}
+
+/* ── OBJECT 1: CANDLE (coral/gold) ── */
+#card-candle .coll-object {
+    animation: float-a 5s ease-in-out infinite;
+}
+
+.candle-flame-el {
+    width: 18px;
+    height: 30px;
+    background: linear-gradient(to top, #FFD060, #FF8020 50%, #FF3800 85%, transparent);
+    border-radius: 50% 50% 30% 30% / 60% 60% 40% 40%;
+    filter: blur(1.5px);
+    animation: flicker 2s ease-in-out infinite;
+    margin-bottom: -4px;
+    box-shadow: 0 0 18px 6px rgba(255, 160, 30, 0.4);
+}
+
+.candle-wick-el {
+    width: 2px;
+    height: 8px;
+    background: #3a1a00;
+    margin-bottom: -2px;
+}
+
+.candle-body-el {
+    width: 36px;
+    height: 120px;
+    background: linear-gradient(160deg, #E07050 0%, #C04828 50%, #902010 100%);
+    border-radius: 3px 3px 2px 2px;
+    box-shadow: inset -4px 0 8px rgba(0, 0, 0, 0.35), inset 3px 0 6px rgba(255, 140, 80, 0.25), 3px 6px 20px rgba(200, 70, 30, 0.4);
+}
+
+.candle-base-el {
+    width: 56px;
+    height: 14px;
+    background: linear-gradient(135deg, #8B5A1A 0%, #C4912A 45%, #7A4A10 100%);
+    border-radius: 3px 3px 5px 5px;
+    box-shadow: 0 4px 16px rgba(180, 130, 40, 0.35);
+}
+
+/* ── OBJECT 2: VESSEL (teal/indigo) ── */
+#card-vessel .coll-object {
+    animation: float-b 6.5s ease-in-out infinite;
+    animation-delay: 0.8s;
+    gap: 0;
+}
+
+.vessel-opening-el {
+    width: 30px;
+    height: 8px;
+    background: linear-gradient(to bottom, #2A6075, #0E2D3A);
+    border-radius: 50%;
+    border: 1px solid rgba(60, 180, 210, 0.3);
+}
+
+.vessel-neck-el {
+    width: 20px;
+    height: 28px;
+    background: linear-gradient(160deg, #1E5068 0%, #0A2030 100%);
+    box-shadow: inset 2px 0 6px rgba(40, 180, 220, 0.15);
+}
+
+.vessel-body-el {
+    width: 80px;
+    height: 150px;
+    background: linear-gradient(160deg, #1E526A 0%, #0D3040 30%, #091E2D 70%, #152840 100%);
+    border-radius: 50% 50% 42% 42% / 18% 18% 52% 52%;
+    box-shadow:
+        inset 12px 0 30px rgba(30, 160, 200, 0.12),
+        inset -8px 0 20px rgba(100, 40, 200, 0.08),
+        4px 12px 30px rgba(0, 100, 140, 0.25),
+        0 0 0 0.5px rgba(50, 160, 200, 0.12);
+    position: relative;
+    overflow: hidden;
+}
+
+.vessel-body-el::after {
+    content: '';
+    position: absolute;
+    top: -10%;
+    left: 15%;
+    width: 35%;
+    height: 120%;
+    background: linear-gradient(to bottom,
+            transparent 0%,
+            rgba(80, 220, 240, 0.18) 30%,
+            rgba(140, 60, 255, 0.12) 60%,
+            transparent 100%);
+    transform: rotate(-8deg);
+    border-radius: 50%;
+}
+
+.vessel-foot-el {
+    width: 45px;
+    height: 8px;
+    background: linear-gradient(to bottom, #0D3040, #061520);
+    border-radius: 0 0 4px 4px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+/* ── OBJECT 3: GEODE FRAGMENT (indigo/gold) ── */
+#card-fragment .coll-object {
+    animation: float-c 7s ease-in-out infinite;
+    animation-delay: 1.6s;
+    justify-content: center;
+}
+
+.fragment-body-el {
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(145deg, #3A1E6A 0%, #1C0A3A 40%, #2A1050 70%, #160828 100%);
+    clip-path: polygon(25% 0%, 80% 5%, 100% 30%, 95% 80%, 75% 100%, 10% 95%, 0% 60%, 8% 18%);
+    box-shadow:
+        inset 3px 3px 12px rgba(140, 80, 255, 0.2),
+        inset -4px -4px 10px rgba(0, 0, 0, 0.5),
+        4px 8px 28px rgba(80, 20, 160, 0.3);
+    position: relative;
+}
+
+.fragment-body-el::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg,
+            transparent 20%,
+            rgba(210, 160, 30, 0.55) 35%,
+            rgba(240, 200, 50, 0.4) 40%,
+            transparent 55%,
+            rgba(210, 160, 30, 0.3) 65%,
+            rgba(240, 200, 50, 0.5) 70%,
+            transparent 80%);
+    clip-path: inherit;
+    animation: gold-pulse 3s ease-in-out infinite;
+}
+
+.fragment-body-el::after {
+    content: '';
+    position: absolute;
+    top: 20%;
+    left: 15%;
+    width: 70%;
+    height: 2px;
+    background: linear-gradient(to right, transparent, #E8C040, #F5D860, transparent);
+    transform: rotate(18deg);
+    animation: gold-pulse 3s ease-in-out infinite;
+    animation-delay: 0.5s;
+}
+
+.fragment-chip-el {
+    width: 55px;
+    height: 55px;
+    background: linear-gradient(120deg, #28104A 0%, #160828 100%);
+    clip-path: polygon(15% 0%, 95% 10%, 100% 85%, 5% 100%);
+    margin-top: -18px;
+    margin-left: 60px;
+    box-shadow: 2px 4px 14px rgba(0, 0, 0, 0.5);
+    position: relative;
+}
+
+.fragment-chip-el::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, rgba(210, 160, 30, 0.4) 0%, transparent 60%);
+    clip-path: inherit;
+    animation: gold-pulse 3s ease-in-out infinite;
+    animation-delay: 1s;
+}
+
+/* ── CARD INFO ── */
+.coll-info {
+    width: 100%;
+    padding-top: 1.5rem;
+    border-top: 0.5px solid rgba(255, 255, 255, 0.08);
+}
+
+.coll-edition {
+    display: block;
+    font-family: var(--font-ui), sans-serif;
+    font-size: 0.55rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: rgba(255, 255, 255, 0.35);
+    margin-bottom: 0.6rem;
+}
+
+.coll-name {
+    font-family: var(--font-body), serif;
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: #ffffff;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.02em;
+}
+
+.coll-mat {
+    font-family: var(--font-ui), sans-serif;
+    font-size: 0.58rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* ============================================
+   DESIGN TALK CTA SECTION
+   ============================================ */
+.ph-cta-section {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8rem 6%;
+    position: relative;
+    pointer-events: auto;
+}
+
+.ph-cta-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 6%;
+    right: 6%;
+    height: 0.5px;
+    background: linear-gradient(to right, transparent, rgba(149, 8, 8, 0.5), rgba(255, 255, 255, 0.1), transparent);
+}
+
+.ph-cta-inner {
+    max-width: 900px;
+    width: 100%;
+    text-align: center;
+}
+
+.cta-eyebrow {
+    font-family: var(--font-ui), sans-serif;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.35em;
+    color: #950808;
+    display: block;
+    margin-bottom: 1.5rem;
+}
+
+.ph-cta-title {
+    font-size: 4.5rem;
+    color: #ffffff;
+    font-weight: normal;
+    line-height: 1.05;
+    margin-bottom: 2rem;
+}
+
+.ph-cta-desc {
+    font-size: 1rem;
+    line-height: 1.9;
+    color: rgba(255, 255, 255, 0.6);
+    max-width: 520px;
+    margin: 0 auto 3rem;
+}
+
+.ph-cta-actions {
+    display: flex;
+    gap: 1.25rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-cta-primary {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background: #950808;
+    color: #ffffff;
+    text-decoration: none;
+    font-family: var(--font-ui), sans-serif;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    font-weight: 600;
+    border-radius: 2px;
+    border: 0.5px solid #950808;
+    transition: all 0.4s ease;
+}
+
+.btn-cta-primary:hover {
+    background: transparent;
+    box-shadow: 0 0 30px rgba(149, 8, 8, 0.25);
+}
+
+.btn-cta-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 1rem 2rem;
+    background: transparent;
+    color: #ffffff;
+    text-decoration: none;
+    font-family: var(--font-ui), sans-serif;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-weight: 500;
+    border-radius: 2px;
+    border: 0.5px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.4s ease;
+}
+
+.btn-cta-secondary:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.ph-cta-divider {
+    height: 0.5px;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.08), transparent);
+    margin: 5rem 0;
+}
+
+.ph-cta-detail {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4rem;
+}
+
+.cta-detail-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.cta-detail-num {
+    font-family: var(--font-body), serif;
+    font-size: 3rem;
+    font-weight: 400;
+    color: #ffffff;
+    line-height: 1;
+}
+
+.cta-detail-label {
+    font-family: var(--font-ui), sans-serif;
+    font-size: 0.55rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.cta-detail-sep {
+    width: 0.5px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
 @media (max-width: 900px) {
     .ph-title {
         font-size: 3rem;
@@ -97,5 +580,26 @@
     .ph-content.right-align {
         text-align: left;
         margin-left: 0;
+    }
+
+    .coll-grid {
+        grid-template-columns: 1fr;
+        gap: 4rem;
+    }
+
+    .coll-title {
+        font-size: 2.5rem;
+    }
+
+    .ph-cta-title {
+        font-size: 3rem;
+    }
+
+    .ph-cta-detail {
+        gap: 2rem;
+    }
+
+    .cta-detail-num {
+        font-size: 2rem;
     }
 }
