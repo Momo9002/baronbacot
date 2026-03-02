@@ -7,12 +7,8 @@
     <title>Philosophy | Baron Bacot</title>
     <meta name="description"
         content="Baron Bacot creates bespoke, collectible interior environments. Discover our philosophy for transforming legacy assets into living masterpieces.">
-
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/logo_red_final.png">
     <link rel="apple-touch-icon" href="assets/logo_red_final.png">
-
-    <!-- Open Graph / Social Sharing -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.baronbacot.com/philosophy.html">
     <meta property="og:title" content="Philosophy | Baron Bacot">
@@ -20,14 +16,7 @@
         content="Baron Bacot creates bespoke, collectible interior environments. Discover our philosophy for transforming legacy assets into living masterpieces.">
     <meta property="og:image" content="https://www.baronbacot.com/assets/sq_img_3.png">
     <meta property="og:site_name" content="Baron Bacot">
-    <meta property="og:locale" content="en_US">
-
-    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Philosophy | Baron Bacot">
-    <meta name="twitter:description"
-        content="Baron Bacot creates bespoke, collectible interior environments. Discover our philosophy for transforming legacy assets into living masterpieces.">
-    <meta name="twitter:image" content="https://www.baronbacot.com/assets/sq_img_3.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quattrocento:wght@400;700&display=swap" rel="stylesheet">
@@ -65,106 +54,83 @@
         <canvas id="particleCanvas"></canvas>
     </div>
 
-    <!-- Scrollable content sections -->
     <main class="ph-main">
-        <section class="ph-section" id="sec1">
+
+        <!-- Section 1: Creating Private Worlds + Living Room Maquette -->
+        <section class="ph-section ph-split" id="sec1">
             <div class="ph-content fade-in">
                 <h1 class="ph-title signature-font">Creating Private Worlds</h1>
                 <p class="ph-desc">We approach every space not as a renovation, but as the curation of a masterpiece. A
-                    singular, meticulously cut jewel tailored the global patron.</p>
+                    singular, meticulously cut jewel tailored to the global patron.</p>
+                <span class="ph-edition-tag">Collectible I · Grand Salon</span>
+            </div>
+            <div class="ph-maquette fade-in">
+                <div class="maquette-frame">
+                    <img src="assets/maquette_living.png" alt="Grand Salon Maquette — Baron Bacot">
+                    <div class="maquette-label">
+                        <span class="maq-title">Grand Salon</span>
+                        <span class="maq-detail">Scale 1:12 · Unique commission</span>
+                    </div>
+                </div>
             </div>
         </section>
-        <section class="ph-section" id="sec2">
-            <div class="ph-content fade-in right-align">
+
+        <!-- Section 2: Legacy Homes + Bedroom Maquette -->
+        <section class="ph-section ph-split ph-split--reverse" id="sec2">
+            <div class="ph-maquette fade-in">
+                <div class="maquette-frame">
+                    <img src="assets/maquette_bedroom.png" alt="Master Suite Maquette — Baron Bacot">
+                    <div class="maquette-label">
+                        <span class="maq-title">Master Suite</span>
+                        <span class="maq-detail">Scale 1:12 · Private commission</span>
+                    </div>
+                </div>
+            </div>
+            <div class="ph-content fade-in">
                 <h2 class="ph-title signature-font">Legacy Homes</h2>
                 <p class="ph-desc">Curating rare materials and obsessive precision to transform high-value legacy assets
                     into transgenerational environments of undeniable power.</p>
+                <span class="ph-edition-tag">Collectible II · Master Suite</span>
             </div>
         </section>
-        <section class="ph-section" id="sec3">
+
+        <!-- Section 3: Enduring Value + Library Maquette -->
+        <section class="ph-section ph-split" id="sec3">
             <div class="ph-content fade-in">
                 <h2 class="ph-title signature-font">Enduring Value</h2>
                 <p class="ph-desc">Never seen before pieces. Space, proportion, and materiality approached as living
                     art. The ultimate realization of form and function acting as an enduring store of value.</p>
+                <span class="ph-edition-tag">Collectible III · The Library</span>
+            </div>
+            <div class="ph-maquette fade-in">
+                <div class="maquette-frame">
+                    <img src="assets/maquette_library.png" alt="The Library Maquette — Baron Bacot">
+                    <div class="maquette-label">
+                        <span class="maq-title">The Library</span>
+                        <span class="maq-detail">Scale 1:12 · Unique commission</span>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- Collectibles Section -->
-        <section class="ph-collectibles" id="sec4">
-            <div class="coll-header">
-                <span class="coll-label">Baron Bacot Collectibles</span>
-                <h2 class="coll-title signature-font">Objects of Desire</h2>
-                <p class="coll-sub">Each piece is a singular work — commissioned, never repeated. Crafted to inhabit the
-                    most distinguished interiors on earth.</p>
-            </div>
-            <div class="coll-grid">
-
-                <!-- Candle -->
-                <div class="coll-card" id="card-candle">
-                    <div class="coll-object candle-obj">
-                        <div class="candle-flame-el"></div>
-                        <div class="candle-wick-el"></div>
-                        <div class="candle-body-el"></div>
-                        <div class="candle-base-el"></div>
-                    </div>
-                    <div class="coll-info">
-                        <span class="coll-edition">Edition I · Bronze</span>
-                        <h3 class="coll-name">Flux Candleholder</h3>
-                        <p class="coll-mat">Cast bronze · Unique piece</p>
-                    </div>
-                </div>
-
-                <!-- Vessel -->
-                <div class="coll-card" id="card-vessel">
-                    <div class="coll-object vessel-obj">
-                        <div class="vessel-opening-el"></div>
-                        <div class="vessel-neck-el"></div>
-                        <div class="vessel-body-el"></div>
-                        <div class="vessel-foot-el"></div>
-                    </div>
-                    <div class="coll-info">
-                        <span class="coll-edition">Edition II · Glass</span>
-                        <h3 class="coll-name">Obsidian Vessel</h3>
-                        <p class="coll-mat">Hand-blown glass · Limited to 3</p>
-                    </div>
-                </div>
-
-                <!-- Fragment -->
-                <div class="coll-card" id="card-fragment">
-                    <div class="coll-object fragment-obj">
-                        <div class="fragment-body-el"></div>
-                        <div class="fragment-chip-el"></div>
-                    </div>
-                    <div class="coll-info">
-                        <span class="coll-edition">Edition III · Gold</span>
-                        <h3 class="coll-name">Aurum Fragment</h3>
-                        <p class="coll-mat">Raw stone &amp; 24k gold leaf · Unique</p>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- Design Talk CTA -->
-        <section class="ph-section ph-cta-section" id="sec5">
+        <!-- CTA Section -->
+        <section class="ph-section ph-cta-section" id="sec4">
             <div class="ph-cta-inner">
-                <div class="ph-cta-content">
-                    <span class="cta-eyebrow">Private Access</span>
-                    <h2 class="ph-cta-title signature-font">A Masterpiece Asset</h2>
-                    <p class="ph-cta-desc">Every transformative project begins with a singular conversation. Share your
-                        architectural intention — we will distill it into something enduring.</p>
-                    <div class="ph-cta-actions">
-                        <a href="https://calendly.com/amaury-bacot/30min" class="btn-cta-primary" target="_blank"
-                            rel="noopener noreferrer">Book a Design Talk</a>
-                        <a href="https://wa.me/971551343144?text=Hello%20Baron%20Bacot%2C%20I%20would%20like%20to%20inquire%20about%20a%20Private%20Design%20Talk."
-                            class="btn-cta-secondary" target="_blank" rel="noopener noreferrer">
-                            <svg viewBox="0 0 24 24" fill="#25D366" width="16" height="16">
-                                <path
-                                    d="M12.031 0C5.385 0 0 5.386 0 12.035c0 2.126.554 4.197 1.606 6.02L.004 24l5.969-1.564a11.96 11.96 0 005.85 1.542h.005c6.643 0 12.03-5.386 12.03-12.035C23.858 5.386 18.473 0 12.031 0zm.005 22.028a10.02 10.02 0 01-5.115-1.401l-.367-.217-3.8.995.998-3.705-.238-.38A9.97 9.97 0 012.012 12.03c0-5.524 4.492-10.02 10.024-10.02 5.53 0 10.023 4.496 10.023 10.02 0 5.525-4.493 10.018-10.023 10.018zm5.5-7.532c-.301-.151-1.786-.882-2.062-.983-.277-.101-.479-.151-.68.151-.202.302-.782.983-.958 1.184-.176.202-.353.227-.655.076-2.203-1.106-3.824-2.862-4.22-3.541-.176-.301.077-.282.477-.855.151-.226.227-.377.378-.629.151-.251.076-.477 0-.629-.076-.151-.68-1.636-.932-2.24-.245-.588-.495-.508-.68-.517-.176-.009-.378-.009-.579-.009-.202 0-.529.076-.806.377-.277.302-1.058 1.033-1.058 2.518s1.084 2.918 1.235 3.119c.151.202 2.126 3.245 5.15 4.545 1.834.787 2.478.89 3.393.753.645-.096 2.064-.843 2.355-1.656.291-.813.291-1.509.202-1.656-.091-.146-.343-.247-.645-.398z" />
-                            </svg>
-                            Concierge WhatsApp
-                        </a>
-                    </div>
+                <span class="cta-eyebrow">Private Access</span>
+                <h2 class="ph-cta-title signature-font">A Masterpiece Asset</h2>
+                <p class="ph-cta-desc">Every transformative project begins with a singular conversation. Share your
+                    architectural intention — we will distill it into something enduring.</p>
+                <div class="ph-cta-actions">
+                    <a href="https://calendly.com/amaury-bacot/30min" class="btn-cta-primary" target="_blank"
+                        rel="noopener noreferrer">Book a Design Talk</a>
+                    <a href="https://wa.me/971551343144?text=Hello%20Baron%20Bacot%2C%20I%20would%20like%20to%20inquire%20about%20a%20Private%20Design%20Talk."
+                        class="btn-cta-secondary" target="_blank" rel="noopener noreferrer">
+                        <svg viewBox="0 0 24 24" fill="#25D366" width="16" height="16">
+                            <path
+                                d="M12.031 0C5.385 0 0 5.386 0 12.035c0 2.126.554 4.197 1.606 6.02L.004 24l5.969-1.564a11.96 11.96 0 005.85 1.542h.005c6.643 0 12.03-5.386 12.03-12.035C23.858 5.386 18.473 0 12.031 0zm.005 22.028a10.02 10.02 0 01-5.115-1.401l-.367-.217-3.8.995.998-3.705-.238-.38A9.97 9.97 0 012.012 12.03c0-5.524 4.492-10.02 10.024-10.02 5.53 0 10.023 4.496 10.023 10.02 0 5.525-4.493 10.018-10.023 10.018zm5.5-7.532c-.301-.151-1.786-.882-2.062-.983-.277-.101-.479-.151-.68.151-.202.302-.782.983-.958 1.184-.176.202-.353.227-.655.076-2.203-1.106-3.824-2.862-4.22-3.541-.176-.301.077-.282.477-.855.151-.226.227-.377.378-.629.151-.251.076-.477 0-.629-.076-.151-.68-1.636-.932-2.24-.245-.588-.495-.508-.68-.517-.176-.009-.378-.009-.579-.009-.202 0-.529.076-.806.377-.277.302-1.058 1.033-1.058 2.518s1.084 2.918 1.235 3.119c.151.202 2.126 3.245 5.15 4.545 1.834.787 2.478.89 3.393.753.645-.096 2.064-.843 2.355-1.656.291-.813.291-1.509.202-1.656-.091-.146-.343-.247-.645-.398z" />
+                        </svg>
+                        Concierge WhatsApp
+                    </a>
                 </div>
                 <div class="ph-cta-divider"></div>
                 <div class="ph-cta-detail">
@@ -185,9 +151,9 @@
                 </div>
             </div>
         </section>
+
     </main>
 
-    <!-- Footer -->
     <footer>
         <div class="footer-content">
             <p>&copy; Baron Bacot 2026</p>
