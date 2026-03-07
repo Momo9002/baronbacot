@@ -1,0 +1,403 @@
+/* ============================================================
+   Baron Bacot — Home Immersive Layer
+   Full-screen particle canvas + transparent floating sections
+   ============================================================ */
+
+/* ─── Canvas: fixed full-screen living background ─── */
+.home-canvas-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 0;
+    background: #0a0a0a;
+    pointer-events: none;
+}
+
+#homeCanvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* ─── Main wrapper — sits above canvas ─── */
+.home-main {
+    position: relative;
+    z-index: 1;
+    pointer-events: none;
+    /* pass through to canvas by default */
+}
+
+/* All interactive content re-enables pointer events */
+.home-main a,
+.home-main button,
+.home-main .product-card,
+.home-main .hero-content,
+.home-main .practice-grid,
+.home-main .method-text,
+.home-main .access-inner {
+    pointer-events: auto;
+}
+
+/* ─── Sections — transparent, full-viewport panes ─── */
+.home-section {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    /* No background images — the particle field IS the background */
+}
+
+/* Very subtle vignette on each section boundary for depth */
+.home-section::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 120px;
+    background: linear-gradient(to bottom, transparent, rgba(10, 10, 10, 0.45));
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ─── HERO SECTION ─── */
+.hero-section {
+    justify-content: flex-start;
+}
+
+/* Preserve the original red strip blend-mode behavior */
+.hero-section .red-strip {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 45%;
+    height: 100%;
+    background-color: var(--red);
+    mix-blend-mode: hard-light;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.hero-section .hero-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 7rem 4rem 4rem 4rem;
+    gap: 3rem;
+}
+
+/* ─── Scroll indicator ─── */
+.scroll-indicator {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.scroll-line {
+    width: 0.5px;
+    height: 60px;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.6), transparent);
+    animation: scrollPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+
+    0%,
+    100% {
+        opacity: 0.3;
+        transform: scaleY(1);
+    }
+
+    50% {
+        opacity: 0.9;
+        transform: scaleY(1.15);
+    }
+}
+
+/* ─── STATEMENT SECTION ─── */
+.statement-section {
+    justify-content: center;
+    text-align: center;
+}
+
+.statement-section .section-text {
+    position: relative;
+    z-index: 2;
+    max-width: 640px;
+    padding: 3rem 2rem;
+    /* Subtle dark glass pane behind the text */
+    background: rgba(10, 10, 10, 0.25);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 0.5px solid rgba(255, 255, 255, 0.06);
+    border-radius: 4px;
+}
+
+/* ─── PRACTICE SECTION ─── */
+.practice-section {
+    justify-content: center;
+    align-items: flex-end;
+    padding-bottom: 6rem;
+}
+
+.practice-section .practice-grid {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    max-width: 760px;
+    padding: 2.5rem;
+    background: rgba(10, 10, 10, 0.28);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 0.5px solid rgba(255, 255, 255, 0.07);
+    border-radius: 4px;
+}
+
+/* ─── METHOD SECTION ─── */
+.method-section {
+    justify-content: flex-end;
+}
+
+/* Preserve the red strip right variant */
+.method-section .red-strip.right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: auto;
+    width: 45%;
+    height: 100%;
+    background-color: var(--red);
+    mix-blend-mode: hard-light;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.method-section .method-text {
+    position: relative;
+    z-index: 2;
+    max-width: 420px;
+    padding: 5rem;
+    text-align: right;
+}
+
+/* ─── ACCESS SECTION ─── */
+.access-section {
+    justify-content: center;
+    align-items: center;
+    /* Solid deep-red ground — the final CTA moment */
+    background: rgba(149, 8, 8, 0.92);
+    backdrop-filter: blur(2px);
+}
+
+.access-section::after {
+    display: none;
+    /* no bottom vignette on last section */
+}
+
+.access-inner {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 600px;
+    padding: 7rem 2rem;
+}
+
+/* ─── Eyebrow label ─── */
+.section-eyebrow {
+    display: block;
+    font-family: var(--font-ui), sans-serif;
+    font-size: 0.58rem;
+    text-transform: uppercase;
+    letter-spacing: 0.35em;
+    color: var(--red);
+    margin-bottom: 1.25rem;
+}
+
+.statement-section .section-eyebrow,
+.method-section .section-eyebrow {
+    color: rgba(149, 8, 8, 0.85);
+}
+
+/* ─── Stats row (Access section) ─── */
+.access-stats {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3.5rem;
+    margin-top: 3.5rem;
+    flex-wrap: wrap;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.stat-num {
+    font-family: var(--font-body), serif;
+    font-size: 3rem;
+    font-weight: 400;
+    color: #ffffff;
+    line-height: 1;
+}
+
+.stat-label {
+    font-family: var(--font-ui), sans-serif;
+    font-size: 0.52rem;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.stat-sep {
+    width: 0.5px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* ─── Access CTA buttons ─── */
+.btn-group-access {
+    display: flex;
+    gap: 1.25rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-access-primary {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background: #ffffff;
+    color: var(--red);
+    text-decoration: none;
+    font-family: var(--font-ui), sans-serif;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    font-weight: 600;
+    border-radius: 2px;
+    border: 0.5px solid #ffffff;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-access-primary:hover {
+    background: transparent;
+    color: #ffffff;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.15);
+}
+
+.btn-access-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 1rem 2rem;
+    background: transparent;
+    color: #ffffff;
+    text-decoration: none;
+    font-family: var(--font-ui), sans-serif;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-weight: 500;
+    border-radius: 2px;
+    border: 0.5px solid rgba(255, 255, 255, 0.35);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-access-secondary:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.6);
+}
+
+/* ─── Keep footer above canvas ─── */
+footer {
+    position: relative;
+    z-index: 1;
+}
+
+/* ─── Keep floating WA above canvas ─── */
+.floating-wa {
+    z-index: 1001;
+}
+
+/* ─── Keep header above canvas ─── */
+header {
+    z-index: 1000;
+}
+
+/* ════════════════════════════════════════════
+   RESPONSIVE
+   ════════════════════════════════════════════ */
+@media (max-width: 900px) {
+
+    .hero-section .red-strip,
+    .method-section .red-strip.right {
+        width: 100%;
+        height: 50%;
+        top: auto;
+        bottom: 0;
+        left: 0;
+        right: auto;
+    }
+
+    .hero-section .hero-content {
+        flex-direction: column;
+        padding: 7rem 1.5rem 3rem 1.5rem;
+        gap: 3rem;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .hero-text-container,
+    .hero-product-container {
+        max-width: 100%;
+    }
+
+    .hero-product-container {
+        justify-content: center;
+    }
+
+    .practice-section .practice-grid {
+        grid-template-columns: 1fr;
+        padding: 1.5rem;
+    }
+
+    .method-section .method-text {
+        text-align: center;
+        padding: 4rem 2rem;
+        max-width: 100%;
+    }
+
+    .method-section {
+        justify-content: center;
+    }
+
+    .access-stats {
+        gap: 2rem;
+    }
+
+    .stat-sep {
+        display: none;
+    }
+
+    .statement-section .section-text {
+        padding: 2rem 1.5rem;
+    }
+}

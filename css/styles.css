@@ -141,25 +141,19 @@ header.scrolled {
 }
 
 /* ============================================
-   SECTIONS — image is the HERO. always.
+   SECTIONS — shared shell (backgrounds handled per-page)
    ============================================ */
 .section {
     position: relative;
     min-height: 100vh;
     display: flex;
     align-items: center;
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
     overflow: hidden;
 }
 
 /* ============================================
-   HERO — THE RED STRIP (sibling, not child = real blend!)
+   RED STRIP — mix-blend-mode accent square
    ============================================ */
-.hero {
-    background-image: url('../assets/sq_img_1.jpg');
-}
 
 /* The red strip: a sibling <div> sitting ON TOP of the bg image.
    Because it's NOT inside a stacking-context child, its
@@ -247,13 +241,8 @@ header.scrolled {
 }
 
 /* ============================================
-   STATEMENT SECTION — image breathes, text is subtle
+   STATEMENT — shared text block styling
    ============================================ */
-.statement {
-    background-image: url('../assets/sq_img_3.png');
-    justify-content: center;
-}
-
 .section-overlay {
     position: absolute;
     inset: 0;
@@ -291,14 +280,8 @@ header.scrolled {
 }
 
 /* ============================================
-   PRACTICE — grid over image
+   PRACTICE — grid shared styles
    ============================================ */
-.practice {
-    background-image: url('../assets/sq_img_2.jpg');
-    justify-content: center;
-    align-items: flex-end;
-    padding-bottom: 5rem;
-}
 
 .practice-grid {
     position: relative;
@@ -332,13 +315,8 @@ header.scrolled {
 }
 
 /* ============================================
-   METHOD — red strip RIGHT, text right-aligned
+   METHOD — text right-aligned (background per-page)
    ============================================ */
-.method {
-    background-image: url('../assets/sq_img_4.jpg');
-    justify-content: flex-end;
-}
-
 .method-text {
     position: relative;
     z-index: 2;
@@ -348,15 +326,8 @@ header.scrolled {
 }
 
 /* ============================================
-   ACCESS — solid red background, clean CTA
+   ACCESS — inner container shared styles
    ============================================ */
-.access {
-    background: var(--red);
-    min-height: 70vh;
-    justify-content: center;
-    align-items: center;
-}
-
 .access-inner {
     text-align: center;
     max-width: 550px;

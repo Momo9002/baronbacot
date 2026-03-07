@@ -28,17 +28,29 @@
     <meta name="twitter:description"
         content="Baron Bacot creates bespoke, collectible interior environments. Acquire a Design Talk to transform your high-value assets into living masterpieces.">
     <meta name="twitter:image" content="https://www.baronbacot.com/assets/sq_img_1.jpg">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Quattrocento:wght@400;700&display=swap"
         rel="stylesheet">
+
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/home-immersive.css">
 </head>
 
 <body>
 
-    <!-- Header -->
+    <!-- ═══════════════════════════════════════════════════
+         FULL-SCREEN PARTICLE CANVAS (living background)
+    ═══════════════════════════════════════════════════ -->
+    <div class="home-canvas-container" aria-hidden="true">
+        <canvas id="homeCanvas"></canvas>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════
+         HEADER
+    ═══════════════════════════════════════════════════ -->
     <header id="header">
         <div class="nav-left">
             <a href="philosophy.html" class="nav-link">The Philosophy</a>
@@ -75,9 +87,14 @@
         </div>
     </header>
 
-    <main>
-        <!-- HERO -->
-        <section class="section hero" id="home">
+    <!-- ═══════════════════════════════════════════════════
+         MAIN
+    ═══════════════════════════════════════════════════ -->
+    <main class="home-main">
+
+        <!-- ─── HERO ─── -->
+        <section class="home-section hero-section" id="home">
+            <!-- The red multiply square (left) — preserved exactly -->
             <div class="red-strip" aria-hidden="true"></div>
 
             <div class="hero-content">
@@ -114,21 +131,25 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Scroll indicator -->
+            <div class="scroll-indicator" aria-hidden="true">
+                <div class="scroll-line"></div>
+            </div>
         </section>
 
-        <!-- STATEMENT -->
-        <section class="section statement" id="statement">
-            <div class="section-overlay"></div>
+        <!-- ─── STATEMENT ─── -->
+        <section class="home-section statement-section" id="statement">
             <div class="section-text fade-in">
+                <span class="section-eyebrow">Private Commission</span>
                 <h2 class="motto signature-font">A Masterpiece Asset</h2>
-                <p class="section-body">A Private Commission. We approach every space not as a renovation, but as the
+                <p class="section-body">We approach every space not as a renovation, but as the
                     curation of a masterpiece. Rare materials, obsessive precision, and profound exclusivity.</p>
             </div>
         </section>
 
-        <!-- PRACTICE -->
-        <section class="section practice" id="practice">
-            <div class="section-overlay light"></div>
+        <!-- ─── PRACTICE ─── -->
+        <section class="home-section practice-section" id="practice">
             <div class="practice-grid fade-in">
                 <div class="practice-item">
                     <h4>Residential Acquisitions</h4>
@@ -143,38 +164,68 @@
                     <p>Exceptional interior architecture for superyachts.</p>
                 </div>
                 <div class="practice-item">
-                    <h4>Legacy & Art Investment</h4>
+                    <h4>Legacy &amp; Art Investment</h4>
                     <p>Space, proportion, and materials approached as a living, transgenerational asset.</p>
                 </div>
             </div>
         </section>
 
-        <!-- METHOD -->
-        <section class="section method" id="method">
+        <!-- ─── METHOD ─── -->
+        <section class="home-section method-section" id="method">
+            <!-- The red multiply square (right) — preserved exactly -->
             <div class="red-strip right" aria-hidden="true"></div>
+
             <div class="method-text">
+                <span class="section-eyebrow">The Method</span>
                 <h2 class="motto signature-font">A Life of Enchantment</h2>
                 <p class="section-body">Each commission is an acquisition of legacy. This guiding intention shapes all
                     architectural decisions, ensuring profound fidelity and enduring value.</p>
-                <a href="https://buy.stripe.com/YOUR_STRIPE_LINK" class="btn-hero" target="_blank"
+                <a href="https://calendly.com/amaury-bacot/30min" class="btn-hero" target="_blank"
                     rel="noopener noreferrer">Acquire a Private Commission</a>
             </div>
         </section>
 
-        <!-- ACCESS / CTA -->
-        <section class="section access" id="access">
+        <!-- ─── ACCESS / CTA ─── -->
+        <section class="home-section access-section" id="access">
             <div class="access-inner">
+                <span class="section-eyebrow" style="color: rgba(255,255,255,0.55);">Private Access</span>
                 <h2 class="motto signature-font">Obsessive Exclusivity</h2>
                 <p class="section-body">Baron Bacot operates strictly through private design talks.<br>Engagements begin
                     with acquiring a preliminary consultation or connecting directly with our advisory concierge.</p>
 
-                <div class="btn-group-access fade-in" style="margin-top: 2.5rem;">
-                    <a href="https://calendly.com/amaury-bacot/30min" class="btn-hero"
-                        style="border-color: rgba(255,255,255,0.8); background: var(--white); color: var(--red);"
-                        target="_blank" rel="noopener noreferrer">Book a Design Talk</a>
+                <!-- Stats row -->
+                <div class="access-stats fade-in">
+                    <div class="stat-item">
+                        <span class="stat-num">30</span>
+                        <span class="stat-label">Min Private Consultation</span>
+                    </div>
+                    <div class="stat-sep"></div>
+                    <div class="stat-item">
+                        <span class="stat-num">01</span>
+                        <span class="stat-label">Client at a Time</span>
+                    </div>
+                    <div class="stat-sep"></div>
+                    <div class="stat-item">
+                        <span class="stat-num">∞</span>
+                        <span class="stat-label">Enduring Legacy</span>
+                    </div>
+                </div>
+
+                <div class="btn-group-access fade-in" style="margin-top: 3rem;">
+                    <a href="https://calendly.com/amaury-bacot/30min" class="btn-access-primary" target="_blank"
+                        rel="noopener noreferrer">Book a Design Talk</a>
+                    <a href="https://wa.me/971551343144?text=Hello%20Baron%20Bacot%2C%20I%20would%20like%20to%20inquire%20about%20a%20Private%20Design%20Talk."
+                        class="btn-access-secondary" target="_blank" rel="noopener noreferrer">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+                            <path
+                                d="M12.031 0C5.385 0 0 5.386 0 12.035c0 2.126.554 4.197 1.606 6.02L.004 24l5.969-1.564a11.96 11.96 0 005.85 1.542h.005c6.643 0 12.03-5.386 12.03-12.035C23.858 5.386 18.473 0 12.031 0zm.005 22.028a10.02 10.02 0 01-5.115-1.401l-.367-.217-3.8.995.998-3.705-.238-.38A9.97 9.97 0 012.012 12.03c0-5.524 4.492-10.02 10.024-10.02 5.53 0 10.023 4.496 10.023 10.02 0 5.525-4.493 10.018-10.023 10.018zm5.5-7.532c-.301-.151-1.786-.882-2.062-.983-.277-.101-.479-.151-.68.151-.202.302-.782.983-.958 1.184-.176.202-.353.227-.655.076-2.203-1.106-3.824-2.862-4.22-3.541-.176-.301.077-.282.477-.855.151-.226.227-.377.378-.629.151-.251.076-.477 0-.629-.076-.151-.68-1.636-.932-2.24-.245-.588-.495-.508-.68-.517-.176-.009-.378-.009-.579-.009-.202 0-.529.076-.806.377-.277.302-1.058 1.033-1.058 2.518s1.084 2.918 1.235 3.119c.151.202 2.126 3.245 5.15 4.545 1.834.787 2.478.89 3.393.753.645-.096 2.064-.843 2.355-1.656.291-.813.291-1.509.202-1.656-.091-.146-.343-.247-.645-.398z" />
+                        </svg>
+                        Concierge WhatsApp
+                    </a>
                 </div>
             </div>
         </section>
+
     </main>
 
     <!-- Floating WhatsApp Widget -->
@@ -196,7 +247,15 @@
         </div>
     </footer>
 
+    <!-- Three.js + GSAP from CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- Homepage scripts -->
     <script src="js/script.js"></script>
+    <script src="js/homeParticles.js"></script>
+
 </body>
 
 </html>
