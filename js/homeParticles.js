@@ -16,7 +16,7 @@
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(62, window.innerWidth / window.innerHeight, 0.1, 2000);
-    camera.position.z = 190;
+    camera.position.z = 260; // pulled back = shapes appear smaller/calmer
 
     const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
@@ -33,7 +33,7 @@
         const a = new Float32Array(n * 3);
         for (let i = 0; i < n; i++) {
             const i3 = i * 3;
-            const r = 90 + Math.random() * 300;
+            const r = 60 + Math.random() * 200; // smaller spread
             const th = Math.random() * Math.PI * 2;
             const ph = Math.acos(Math.random() * 2 - 1);
             a[i3] = r * Math.sin(ph) * Math.cos(th);
@@ -50,7 +50,7 @@
             const i3 = i * 3;
             const th = Math.random() * Math.PI * 2;
             const ph = Math.acos(Math.random() * 2 - 1);
-            const r = 98 + Math.random() * 8;
+            const r = 68 + Math.random() * 6; // smaller sphere
             a[i3] = r * Math.sin(ph) * Math.cos(th);
             a[i3 + 1] = r * Math.sin(ph) * Math.sin(th);
             a[i3 + 2] = r * Math.cos(ph);
@@ -61,15 +61,15 @@
     /* 2 — Double helix: DNA strand, architectural */
     function mkHelix(n) {
         const a = new Float32Array(n * 3);
-        const helixR = 48, helixH = 240;
+        const helixR = 32, helixH = 165; // tighter, shorter
         for (let i = 0; i < n; i++) {
             const i3 = i * 3;
-            const t = (i / n) * Math.PI * 26;
+            const t = (i / n) * Math.PI * 24;
             const y = (i / n) * helixH - helixH / 2;
             const strand = i % 2 === 0 ? 0 : Math.PI;
-            a[i3] = helixR * Math.cos(t + strand) + (Math.random() - 0.5) * 5;
-            a[i3 + 1] = y + (Math.random() - 0.5) * 4;
-            a[i3 + 2] = helixR * Math.sin(t + strand) + (Math.random() - 0.5) * 5;
+            a[i3] = helixR * Math.cos(t + strand) + (Math.random() - 0.5) * 4;
+            a[i3 + 1] = y + (Math.random() - 0.5) * 3;
+            a[i3 + 2] = helixR * Math.sin(t + strand) + (Math.random() - 0.5) * 4;
         }
         return a;
     }
@@ -81,10 +81,10 @@
             const i3 = i * 3;
             const arm = i % 5;
             const armOff = (arm * Math.PI * 2) / 5;
-            const r = 12 + Math.random() * 195;
+            const r = 8 + Math.random() * 130; // tighter galaxy
             const angle = r * 0.06 + armOff;
-            const scatter = (Math.random() - 0.5) * (3 + r * 0.07);
-            const scatterY = (Math.random() - 0.5) * (2 + r * 0.025);
+            const scatter = (Math.random() - 0.5) * (2 + r * 0.06);
+            const scatterY = (Math.random() - 0.5) * (1.5 + r * 0.02);
             a[i3] = Math.cos(angle) * r + scatter;
             a[i3 + 1] = scatterY;
             a[i3 + 2] = Math.sin(angle) * r + scatter;
@@ -97,13 +97,13 @@
         const a = new Float32Array(n * 3);
         for (let i = 0; i < n; i++) {
             const i3 = i * 3;
-            const t = (i / n) * Math.PI * 40;
-            const r = 20 + Math.random() * 160;
-            const warp = Math.sin(t * 0.3) * 35;
-            const y = Math.sin(t * 0.08 + r * 0.04) * 80 + (Math.random() - 0.5) * 20;
-            a[i3] = Math.cos(t * 0.15 + warp * 0.02) * r + (Math.random() - 0.5) * 8;
+            const t = (i / n) * Math.PI * 36;
+            const r = 14 + Math.random() * 110; // smaller marble
+            const warp = Math.sin(t * 0.3) * 24;
+            const y = Math.sin(t * 0.08 + r * 0.04) * 55 + (Math.random() - 0.5) * 14;
+            a[i3] = Math.cos(t * 0.15 + warp * 0.02) * r + (Math.random() - 0.5) * 6;
             a[i3 + 1] = y;
-            a[i3 + 2] = Math.sin(t * 0.15 + warp * 0.02) * r + (Math.random() - 0.5) * 8;
+            a[i3 + 2] = Math.sin(t * 0.15 + warp * 0.02) * r + (Math.random() - 0.5) * 6;
         }
         return a;
     }
@@ -113,14 +113,14 @@
         const a = new Float32Array(n * 3);
         for (let i = 0; i < n; i++) {
             const i3 = i * 3;
-            const h = (Math.random() - 0.5) * 200;
-            const maxR = 70;
-            const cr = (1 - Math.abs(h) / 100) * maxR;
+            const h = (Math.random() - 0.5) * 140; // shorter diamond
+            const maxR = 50;
+            const cr = (1 - Math.abs(h) / 70) * maxR;
             const ang = Math.floor(Math.random() * 8) * (Math.PI / 4);
             const ofr = cr + Math.random() * 2;
-            a[i3] = ofr * Math.cos(ang) + (Math.random() - 0.5) * 5;
+            a[i3] = ofr * Math.cos(ang) + (Math.random() - 0.5) * 4;
             a[i3 + 1] = h;
-            a[i3 + 2] = ofr * Math.sin(ang) + (Math.random() - 0.5) * 5;
+            a[i3 + 2] = ofr * Math.sin(ang) + (Math.random() - 0.5) * 4;
         }
         return a;
     }
@@ -174,16 +174,16 @@
                 float p   = ease(uProgress);
                 vec3  pos = mix(aStart, aEnd, p);
 
-                /* Organic, breathing drift — different axes breathe at different rates */
-                float drift = uTime * 0.42;
-                pos.x += sin(drift       + aStart.y * 0.028) * 3.0;
-                pos.y += cos(drift * 0.8 + aStart.x * 0.031) * 2.0;
-                pos.z += sin(drift * 0.6 + aStart.z * 0.022) * 2.5;
+                /* Organic, breathing drift — very slow and calm */
+                float drift = uTime * 0.18;
+                pos.x += sin(drift       + aStart.y * 0.018) * 0.6; // Halved drift amplitude
+                pos.y += cos(drift * 0.7 + aStart.x * 0.020) * 0.4; // Halved drift amplitude
+                pos.z += sin(drift * 0.5 + aStart.z * 0.016) * 0.5; // Halved drift amplitude
 
                 vec4 mv = modelViewMatrix * vec4(pos, 1.0);
 
-                /* Per-particle independent pulse */
-                float pulse = sin(uTime * 2.0 + aStart.x * 0.14 + aStart.y * 0.09 + aStart.z * 0.06) * 0.5 + 0.5;
+                /* Per-particle independent pulse — slow breath */
+                float pulse = sin(uTime * 0.45 + aStart.x * 0.10 + aStart.y * 0.07 + aStart.z * 0.05) * 0.5 + 0.5; // Slower pulse
                 vPulse = pulse;
 
                 /* Depth-based size */
@@ -299,7 +299,7 @@
             trigger: 'body',
             start: 'top top',
             end: 'bottom bottom',
-            scrub: 2.0          // smooth lag behind scroll
+            scrub: 4.0          // very lazy — shapes morph slowly
         },
         onUpdate: () => updateMorph(morphProxy.value)
     });
@@ -324,13 +324,13 @@
         scene.rotation.y += (tX * 0.10 - scene.rotation.y) * 0.03;
     });
 
-    /* ─── Gentle auto-rotation + time uniform ─── */
+    /* ─── Very slow auto-rotation ─── */
     const clock = new THREE.Clock();
     function animate() {
         requestAnimationFrame(animate);
         const t = clock.getElapsedTime();
-        points.rotation.y += 0.0015;
-        points.rotation.x = Math.sin(t * 0.06) * 0.04;
+        points.rotation.y += 0.00045;               // 3× slower
+        points.rotation.x = Math.sin(t * 0.025) * 0.025; // barely noticeable tilt
         mat.uniforms.uTime.value = t;
         renderer.render(scene, camera);
     }

@@ -90,17 +90,9 @@
     min-height: 100vh;
 }
 
-/* Red multiply strip — preserved, left side */
+/* Red multiply strip — hidden (removed per design) */
 .cinematic-hero .red-strip {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 42%;
-    height: 100%;
-    background-color: var(--red);
-    mix-blend-mode: hard-light;
-    z-index: 1;
-    pointer-events: none;
+    display: none;
 }
 
 /* The cinematic layout: 3 zones — top-left · center · bottom */
@@ -432,9 +424,11 @@
 .portfolio-feature-img {
     position: relative;
     width: 100%;
-    height: 70vh;
+    height: 85vh;
+    /* taller, more cinematic */
     overflow: hidden;
-    border-radius: 2px;
+    border-radius: 0;
+    /* edge-to-edge, no rounding */
 }
 
 .portfolio-feature-img img {
@@ -651,7 +645,8 @@
 
 .maquette-item img {
     width: 100%;
-    aspect-ratio: 1;
+    aspect-ratio: 4 / 3;
+    /* wider, more landscape */
     object-fit: cover;
     display: block;
     transition: transform 0.6s ease;
@@ -749,33 +744,25 @@
     justify-content: flex-end;
 }
 
-/* Red multiply strip — right side */
+/* Red multiply strip — removed */
 .method-section .red-strip.right {
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: auto;
-    width: 45%;
-    height: 100%;
-    background-color: var(--red);
-    mix-blend-mode: hard-light;
-    z-index: 1;
-    pointer-events: none;
+    display: none;
 }
 
 .method-section .method-text {
     position: relative;
     z-index: 2;
-    max-width: 480px;
+    max-width: 600px;
+    width: 100%;
     padding: 5rem 6vw;
-    text-align: right;
+    text-align: center;
+    /* centred now strip is gone */
     /* Blur backdrop */
     background: rgba(7, 7, 7, 0.35);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border: 0.5px solid rgba(255, 255, 255, 0.05);
-    border-left: 0.5px solid rgba(149, 8, 8, 0.15);
-    margin-right: 0;
+    margin: 0 auto;
 }
 
 /* ══════════════════════════════════════════════════
@@ -1196,8 +1183,8 @@ header {
         text-align: center;
         padding: 4rem 5vw;
         max-width: 100%;
-        border-left: none;
-        border-top: 0.5px solid rgba(149, 8, 8, 0.15);
+        border-top: none;
+        border: 0.5px solid rgba(255, 255, 255, 0.05);
     }
 
     /* Access stats */
