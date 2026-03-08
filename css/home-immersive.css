@@ -1,6 +1,7 @@
 /* ================================================================
-   Baron Bacot — Home Immersive v2
-   Cinematic particle hero + transparent floating content sections
+   Baron Bacot — Home Immersive v4
+   Full-width sections · Discreet blur boxes · Seamless scroll
+   Red burnt effect preserved throughout text boxes
    ================================================================ */
 
 /* ─── Canvas: fixed full-screen living background ─── */
@@ -35,23 +36,53 @@
 .home-main .practice-grid,
 .home-main .method-text,
 .home-main .access-inner,
-.home-main .cinematic-inner {
+.home-main .cinematic-inner,
+.home-main .portfolio-inner,
+.home-main .lead-inner,
+.home-main form,
+.home-main input,
+.home-main textarea,
+.home-main select {
     pointer-events: auto;
 }
 
-/* ─── All sections: base shell ─── */
+/* ─── All sections: base shell — fully edge-to-edge ─── */
 .home-section {
     position: relative;
     min-height: 100vh;
+    width: 100%;
     display: flex;
     align-items: center;
     overflow: hidden;
 }
 
 /* ══════════════════════════════════════════════════
-   SECTION 1 — CINEMATIC HERO
-   Full 100vh. ONLY the universe + brand identity.
-   Think: opening of a Kubrick film.
+   SHARED BLUR BOX — discreet frosted glass behind text
+   ══════════════════════════════════════════════════ */
+.blur-box {
+    position: relative;
+    background: rgba(7, 7, 7, 0.42);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 0.5px solid rgba(255, 255, 255, 0.07);
+    border-radius: 3px;
+    box-shadow:
+        0 0 0 0.5px rgba(149, 8, 8, 0.08) inset,
+        0 24px 64px rgba(0, 0, 0, 0.45),
+        0 0 48px rgba(0, 0, 0, 0.3);
+}
+
+.blur-box--red {
+    border-color: rgba(149, 8, 8, 0.22);
+    box-shadow:
+        0 0 0 0.5px rgba(149, 8, 8, 0.12) inset,
+        0 24px 64px rgba(0, 0, 0, 0.5),
+        0 0 50px rgba(149, 8, 8, 0.07);
+}
+
+/* ══════════════════════════════════════════════════
+   SECTION 1 — CINEMATIC SPACE HERO
+   Full 100vh. The universe. Brand lives here.
 ══════════════════════════════════════════════════ */
 .cinematic-hero {
     justify-content: center;
@@ -59,12 +90,12 @@
     min-height: 100vh;
 }
 
-/* Red multiply strip — preserved exactly, left side */
+/* Red multiply strip — preserved, left side */
 .cinematic-hero .red-strip {
     position: absolute;
     top: 0;
     left: 0;
-    width: 45%;
+    width: 42%;
     height: 100%;
     background-color: var(--red);
     mix-blend-mode: hard-light;
@@ -72,7 +103,7 @@
     pointer-events: none;
 }
 
-/* The cinematic layout: 3 zones — top-left tag · center · bottom */
+/* The cinematic layout: 3 zones — top-left · center · bottom */
 .cinematic-inner {
     position: relative;
     z-index: 2;
@@ -81,21 +112,21 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 7rem 4rem 3.5rem;
+    padding: 7rem 5vw 3.5rem;
 }
 
 /* Top-left discipline tag */
 .cin-tag {
     font-family: var(--font-ui), sans-serif;
-    font-size: 0.6rem;
+    font-size: 0.58rem;
     text-transform: uppercase;
-    letter-spacing: 0.35em;
-    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 0.38em;
+    color: rgba(255, 255, 255, 0.35);
     display: block;
     align-self: flex-start;
 }
 
-/* Center: the brand statement — massive, pure */
+/* ─── Center zone: all key brand elements — wrapped in blur box ─── */
 .cin-center {
     display: flex;
     flex-direction: column;
@@ -103,36 +134,101 @@
     text-align: center;
     flex: 1;
     justify-content: center;
-    gap: 1.5rem;
+    gap: 1.8rem;
+}
+
+/* Discreet glass layer behind hero copy — wider and more subtle */
+.cin-center-glass {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.8rem;
+    padding: 3.5rem 5rem;
+    background: rgba(7, 7, 7, 0.30);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 0.5px solid rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+}
+
+/* Baron Bacot — signature typeface, massive */
+.cin-brand-name {
+    font-family: var(--font-motto), serif;
+    font-size: clamp(3.5rem, 9vw, 8.5rem);
+    font-weight: normal;
+    letter-spacing: 0.08em;
+    color: var(--white);
+    text-shadow:
+        0 0 80px rgba(0, 0, 0, 0.95),
+        0 0 160px rgba(0, 0, 0, 0.7),
+        0 4px 30px rgba(0, 0, 0, 0.9);
+    opacity: 0;
+    transform: translateY(24px);
+    animation: cinFade 1.6s cubic-bezier(0.4, 0, 0.2, 1) 0.4s forwards;
+    line-height: 1;
 }
 
 .cin-title {
     font-family: var(--font-body), serif;
-    font-size: clamp(2.8rem, 6vw, 5.5rem);
+    font-size: clamp(0.7rem, 1.5vw, 1rem);
     font-weight: 400;
-    line-height: 1.15;
-    letter-spacing: 0.03em;
-    color: var(--white);
-    /* Subtle text-glow so it reads over bright particles */
-    text-shadow:
-        0 0 60px rgba(0, 0, 0, 0.9),
-        0 0 120px rgba(0, 0, 0, 0.6),
-        0 4px 24px rgba(0, 0, 0, 0.8);
-    /* Staggered fade-in via JS */
+    line-height: 1.4;
+    letter-spacing: 0.2em;
+    color: rgba(255, 255, 255, 0.75);
+    text-shadow: 0 0 40px rgba(0, 0, 0, 0.9), 0 4px 24px rgba(0, 0, 0, 0.8);
     opacity: 0;
     transform: translateY(18px);
     animation: cinFade 1.4s cubic-bezier(0.4, 0, 0.2, 1) 1.0s forwards;
+    text-transform: uppercase;
 }
 
 .cin-subtitle {
     font-family: var(--font-ui), sans-serif;
-    font-size: 0.68rem;
+    font-size: 0.62rem;
     text-transform: uppercase;
-    letter-spacing: 0.35em;
-    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.3em;
+    color: rgba(255, 255, 255, 0.4);
     text-shadow: 0 0 40px rgba(0, 0, 0, 0.9);
     opacity: 0;
-    animation: cinFade 1.2s ease-out 1.8s forwards;
+    animation: cinFade 1.2s ease-out 1.6s forwards;
+}
+
+/* Thin decorative divider */
+.cin-divider {
+    width: 60px;
+    height: 0.5px;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.4), transparent);
+    opacity: 0;
+    animation: cinFade 1s ease-out 1.9s forwards;
+}
+
+/* Primary CTA in hero */
+.cin-cta-primary {
+    display: inline-block;
+    padding: 1rem 3rem;
+    background: rgba(149, 8, 8, 0.85);
+    color: var(--white);
+    text-decoration: none;
+    font-family: var(--font-ui), sans-serif;
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.28em;
+    font-weight: 600;
+    border: 0.5px solid rgba(149, 8, 8, 0.5);
+    border-radius: 2px;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+    animation: cinFade 1s ease-out 2.2s forwards;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 0 40px rgba(149, 8, 8, 0.3), 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.cin-cta-primary:hover {
+    background: rgba(180, 10, 10, 1);
+    border-color: rgba(200, 20, 20, 0.8);
+    box-shadow: 0 0 60px rgba(149, 8, 8, 0.5), 0 12px 32px rgba(0, 0, 0, 0.5);
+    transform: translateY(-2px);
 }
 
 @keyframes cinFade {
@@ -142,37 +238,55 @@
     }
 }
 
-/* Bottom row: CTA + scroll indicator */
+/* ─── Bottom row: metrics + scroll hint ─── */
 .cin-bottom {
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
 }
 
-/* Cinematic CTA — ghost button, understated */
-.cin-cta {
-    display: inline-block;
-    padding: 0.85rem 2.2rem;
-    background: transparent;
-    color: var(--white);
-    text-decoration: none;
-    font-family: var(--font-ui), sans-serif;
-    font-size: 0.62rem;
-    text-transform: uppercase;
-    letter-spacing: 0.25em;
-    font-weight: 500;
-    border: 0.5px solid rgba(255, 255, 255, 0.45);
-    border-radius: 2px;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+/* Metrics bar — with blur box */
+.cin-metrics {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
     opacity: 0;
-    animation: cinFade 1s ease-out 2.4s forwards;
-    backdrop-filter: blur(4px);
+    animation: cinFade 1s ease-out 2.8s forwards;
+    padding: 1.2rem 2.2rem;
+    background: rgba(7, 7, 7, 0.38);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 0.5px solid rgba(255, 255, 255, 0.06);
+    border-radius: 3px;
 }
 
-.cin-cta:hover {
-    background: var(--white);
-    color: var(--black);
-    border-color: var(--white);
+.cin-metric {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.cin-metric-num {
+    font-family: var(--font-body), serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--white);
+    line-height: 1;
+    text-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+}
+
+.cin-metric-label {
+    font-family: var(--font-ui), sans-serif;
+    font-size: 0.48rem;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: rgba(255, 255, 255, 0.35);
+}
+
+.cin-metric-sep {
+    width: 0.5px;
+    height: 32px;
+    background: rgba(255, 255, 255, 0.15);
 }
 
 /* Scroll indication */
@@ -182,7 +296,7 @@
     align-items: center;
     gap: 0.6rem;
     opacity: 0;
-    animation: cinFade 1s ease-out 3s forwards;
+    animation: cinFade 1s ease-out 3.2s forwards;
 }
 
 .cin-scroll-line {
@@ -211,16 +325,362 @@
 
     50% {
         opacity: 1;
-        transform: scaleY(1.08);
+        transform: scaleY(1.1);
     }
 }
 
 /* ══════════════════════════════════════════════════
-   SECTION 2 — OFFER (text + product card)
+   SECTION 2 — STATEMENT (with background image + burnt red)
+══════════════════════════════════════════════════ */
+.statement-section {
+    justify-content: center;
+    text-align: center;
+}
+
+/* Background image layer */
+.statement-bg-image {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    z-index: 0;
+    opacity: 0.45;
+}
+
+/* The burnt red effect: hard-light blend strip across the image */
+.statement-red-burn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg,
+            rgba(149, 8, 8, 0.85) 0%,
+            rgba(100, 4, 4, 0.4) 40%,
+            transparent 70%);
+    mix-blend-mode: hard-light;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.statement-section .section-text {
+    position: relative;
+    z-index: 2;
+    max-width: 720px;
+    width: 90%;
+    padding: 5rem 5rem;
+    /* The burnt red glass box effect */
+    background: rgba(7, 7, 7, 0.50);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 0.5px solid rgba(149, 8, 8, 0.22);
+    border-radius: 3px;
+    box-shadow:
+        inset 0 0 0 0.5px rgba(149, 8, 8, 0.12),
+        0 30px 80px rgba(0, 0, 0, 0.5),
+        0 0 60px rgba(149, 8, 8, 0.07);
+}
+
+/* ══════════════════════════════════════════════════
+   SECTION 3 — PORTFOLIO GALLERY
+   "The Work" — full-width edge-to-edge layout
+══════════════════════════════════════════════════ */
+.portfolio-section {
+    min-height: auto;
+    padding: 8rem 0;
+    display: block;
+    align-items: unset;
+}
+
+.portfolio-inner {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    /* Full-width — only small breathing padding */
+    padding: 0 3vw;
+}
+
+/* Portfolio header — blur box */
+.portfolio-header {
+    text-align: center;
+    margin-bottom: 5rem;
+    display: inline-block;
+    width: 100%;
+}
+
+.portfolio-header-glass {
+    display: inline-block;
+    padding: 3rem 4rem;
+    background: rgba(7, 7, 7, 0.38);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 0.5px solid rgba(255, 255, 255, 0.06);
+    border-radius: 3px;
+}
+
+.portfolio-intro {
+    max-width: 540px;
+    margin: 1.5rem auto 0;
+}
+
+/* Feature image: large, cinematic, full-width */
+.portfolio-feature {
+    margin-bottom: 3rem;
+}
+
+.portfolio-feature-img {
+    position: relative;
+    width: 100%;
+    height: 70vh;
+    overflow: hidden;
+    border-radius: 2px;
+}
+
+.portfolio-feature-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.portfolio-feature-img:hover img {
+    transform: scale(1.03);
+}
+
+/* Overlay on feature image: burnt red strip (the signature effect) */
+.portfolio-img-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+
+.portfolio-burn-strip {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 38%;
+    height: 100%;
+    background-color: var(--red);
+    mix-blend-mode: hard-light;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.65;
+}
+
+.portfolio-img-caption {
+    position: absolute;
+    bottom: 2.5rem;
+    right: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.4rem;
+    z-index: 2;
+    /* Blur box behind caption */
+    padding: 1rem 1.5rem;
+    background: rgba(7, 7, 7, 0.5);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 0.5px solid rgba(255, 255, 255, 0.07);
+    border-radius: 2px;
+}
+
+.portfolio-caption-num {
+    font-family: var(--font-ui), sans-serif;
+    font-size: 0.5rem;
+    letter-spacing: 0.3em;
+    color: rgba(255, 255, 255, 0.4);
+    text-transform: uppercase;
+}
+
+.portfolio-caption-title {
+    font-family: var(--font-body), serif;
+    font-size: 1.4rem;
+    color: var(--white);
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
+}
+
+.portfolio-caption-tag {
+    font-family: var(--font-ui), sans-serif;
+    font-size: 0.52rem;
+    letter-spacing: 0.28em;
+    color: rgba(255, 255, 255, 0.45);
+    text-transform: uppercase;
+}
+
+/* Grid of works */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-bottom: 5rem;
+}
+
+.portfolio-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.portfolio-item-img {
+    position: relative;
+    aspect-ratio: 1;
+    overflow: hidden;
+    border-radius: 2px;
+}
+
+.portfolio-item-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.portfolio-item-img:hover img {
+    transform: scale(1.06);
+}
+
+/* Burnt red overlay on each portfolio item */
+.portfolio-item-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+
+.portfolio-item-burn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(210deg,
+            rgba(149, 8, 8, 0.7) 0%,
+            transparent 55%);
+    mix-blend-mode: hard-light;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.portfolio-item-img:hover .portfolio-item-burn {
+    opacity: 1;
+}
+
+/* Portfolio item info — blur box */
+.portfolio-item-info {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    background: rgba(7, 7, 7, 0.35);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 0.5px solid rgba(255, 255, 255, 0.05);
+    border-radius: 2px;
+}
+
+.portfolio-item-num {
+    font-family: var(--font-ui), sans-serif;
+    font-size: 0.48rem;
+    letter-spacing: 0.2em;
+    color: rgba(149, 8, 8, 0.7);
+    text-transform: uppercase;
+    padding-top: 0.15rem;
+    white-space: nowrap;
+}
+
+.portfolio-item-title {
+    font-family: var(--font-body), serif;
+    font-size: 0.95rem;
+    color: var(--white);
+    margin-bottom: 0.3rem;
+    opacity: 0.9;
+}
+
+.portfolio-item-tag {
+    font-family: var(--font-ui), sans-serif;
+    font-size: 0.5rem;
+    letter-spacing: 0.2em;
+    color: rgba(255, 255, 255, 0.35);
+    text-transform: uppercase;
+}
+
+/* Maquette row: architectural models */
+.maquette-row {
+    border-top: 0.5px solid rgba(255, 255, 255, 0.06);
+    padding-top: 4rem;
+}
+
+.maquette-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.maquette-sub {
+    font-family: var(--font-ui), sans-serif;
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 0.05em;
+    max-width: 360px;
+    text-align: right;
+}
+
+.maquette-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.maquette-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 2px;
+    border: 0.5px solid rgba(255, 255, 255, 0.06);
+    background: rgba(7, 7, 7, 0.4);
+    transition: border-color 0.4s ease;
+}
+
+.maquette-item:hover {
+    border-color: rgba(149, 8, 8, 0.3);
+}
+
+.maquette-item img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+    opacity: 0.85;
+}
+
+.maquette-item:hover img {
+    transform: scale(1.04);
+    opacity: 1;
+}
+
+.maquette-label {
+    font-family: var(--font-ui), sans-serif;
+    font-size: 0.52rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.45);
+    padding: 0.8rem 1rem;
+    text-align: center;
+    border-top: 0.5px solid rgba(255, 255, 255, 0.05);
+}
+
+/* ══════════════════════════════════════════════════
+   SECTION 4 — OFFER (text + product card)
+   Full-width spanning layout
 ══════════════════════════════════════════════════ */
 .offer-section {
     justify-content: center;
-    padding: 0 4rem;
+    padding: 0;
 }
 
 .offer-inner {
@@ -230,15 +690,20 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    max-width: 1300px;
-    margin: 0 auto;
-    padding: 5rem 0;
+    padding: 5rem 6vw;
     gap: 4rem;
 }
 
 .offer-text {
     flex: 1;
-    max-width: 460px;
+    max-width: 500px;
+    /* Blur box */
+    padding: 3.5rem 4rem;
+    background: rgba(7, 7, 7, 0.38);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 0.5px solid rgba(255, 255, 255, 0.06);
+    border-radius: 3px;
 }
 
 .offer-card {
@@ -248,32 +713,12 @@
 }
 
 /* ══════════════════════════════════════════════════
-   SECTION 3 — STATEMENT
-══════════════════════════════════════════════════ */
-.statement-section {
-    justify-content: center;
-    text-align: center;
-}
-
-.statement-section .section-text {
-    position: relative;
-    z-index: 2;
-    max-width: 640px;
-    padding: 3.5rem 2.5rem;
-    background: rgba(7, 7, 7, 0.3);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border: 0.5px solid rgba(255, 255, 255, 0.06);
-    border-radius: 3px;
-}
-
-/* ══════════════════════════════════════════════════
-   SECTION 4 — PRACTICE GRID
+   SECTION 5 — PRACTICE GRID — full-width, centred
 ══════════════════════════════════════════════════ */
 .practice-section {
     justify-content: center;
-    align-items: flex-end;
-    padding-bottom: 5rem;
+    align-items: center;
+    padding: 8rem 5vw;
 }
 
 .practice-section .practice-grid {
@@ -282,17 +727,23 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
-    max-width: 760px;
-    padding: 3rem;
-    background: rgba(7, 7, 7, 0.3);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border: 0.5px solid rgba(255, 255, 255, 0.06);
+    width: 100%;
+    max-width: 900px;
+    padding: 4rem;
+    /* Red-burnt glass box effect */
+    background: rgba(7, 7, 7, 0.40);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 0.5px solid rgba(149, 8, 8, 0.18);
     border-radius: 3px;
+    box-shadow:
+        inset 0 0 0 0.5px rgba(149, 8, 8, 0.09),
+        0 20px 60px rgba(0, 0, 0, 0.4),
+        0 0 40px rgba(149, 8, 8, 0.05);
 }
 
 /* ══════════════════════════════════════════════════
-   SECTION 5 — METHOD
+   SECTION 6 — METHOD — full-width
 ══════════════════════════════════════════════════ */
 .method-section {
     justify-content: flex-end;
@@ -315,27 +766,225 @@
 .method-section .method-text {
     position: relative;
     z-index: 2;
-    max-width: 420px;
-    padding: 5rem;
+    max-width: 480px;
+    padding: 5rem 6vw;
     text-align: right;
+    /* Blur backdrop */
+    background: rgba(7, 7, 7, 0.35);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 0.5px solid rgba(255, 255, 255, 0.05);
+    border-left: 0.5px solid rgba(149, 8, 8, 0.15);
+    margin-right: 0;
 }
 
 /* ══════════════════════════════════════════════════
-   SECTION 6 — ACCESS / FINAL CTA
+   SECTION 7 — LEAD CAPTURE FORM
+   Full-width two-column layout
+══════════════════════════════════════════════════ */
+.lead-section {
+    justify-content: center;
+    align-items: center;
+    padding: 8rem 0;
+    min-height: 100vh;
+}
+
+.lead-inner {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    width: 100%;
+    padding: 0 6vw;
+    align-items: center;
+}
+
+.lead-text {
+    /* Blur box behind the descriptive text */
+    padding: 3.5rem 4rem;
+    background: rgba(7, 7, 7, 0.36);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 0.5px solid rgba(255, 255, 255, 0.05);
+    border-radius: 3px;
+}
+
+.lead-body {
+    margin-top: 1.5rem;
+    opacity: 0.7;
+    line-height: 1.9;
+}
+
+/* The lead form box — with the red burnt frame effect */
+.lead-form {
+    position: relative;
+    padding: 3.5rem;
+    background: rgba(7, 7, 7, 0.5);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 0.5px solid rgba(149, 8, 8, 0.28);
+    border-radius: 3px;
+    overflow: hidden;
+    box-shadow:
+        inset 0 0 0 0.5px rgba(149, 8, 8, 0.10),
+        0 30px 80px rgba(0, 0, 0, 0.5),
+        0 0 50px rgba(149, 8, 8, 0.07);
+}
+
+/* The burnt red accent stripe on the form */
+.lead-burn-strip {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(to right, var(--red), rgba(149, 8, 8, 0.3), transparent);
+    pointer-events: none;
+}
+
+.form-field {
+    margin-bottom: 1.5rem;
+}
+
+.form-label {
+    display: block;
+    font-family: var(--font-ui), sans-serif;
+    font-size: 0.52rem;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: rgba(255, 255, 255, 0.45);
+    margin-bottom: 0.6rem;
+}
+
+.form-input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.04);
+    border: 0.5px solid rgba(255, 255, 255, 0.12);
+    border-radius: 2px;
+    padding: 0.85rem 1rem;
+    color: var(--white);
+    font-family: var(--font-ui), sans-serif;
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    transition: all 0.3s ease;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.form-input::placeholder {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.form-input:focus {
+    border-color: rgba(149, 8, 8, 0.6);
+    background: rgba(149, 8, 8, 0.04);
+    box-shadow: 0 0 0 1px rgba(149, 8, 8, 0.15);
+}
+
+.form-select {
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.4)' stroke-width='1.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
+}
+
+.form-select option {
+    background: #0e0e0e;
+    color: var(--white);
+}
+
+.form-textarea {
+    resize: none;
+    line-height: 1.7;
+}
+
+.form-submit {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 1rem 2rem;
+    background: var(--red);
+    color: var(--white);
+    font-family: var(--font-ui), sans-serif;
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    font-weight: 600;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    margin-top: 0.5rem;
+    box-shadow: 0 4px 20px rgba(149, 8, 8, 0.35);
+}
+
+.form-submit:hover {
+    background: #b00a0a;
+    box-shadow: 0 8px 30px rgba(149, 8, 8, 0.5);
+    transform: translateY(-1px);
+}
+
+.form-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.form-disclaimer {
+    font-family: var(--font-ui), sans-serif;
+    font-size: 0.48rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.2);
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.form-success {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
+    padding: 2rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-family: var(--font-ui), sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+}
+
+.form-success svg {
+    color: rgba(149, 8, 8, 0.85);
+}
+
+/* ══════════════════════════════════════════════════
+   SECTION 8 — ACCESS / FINAL CTA — full-width centered
 ══════════════════════════════════════════════════ */
 .access-section {
     justify-content: center;
     align-items: center;
     /* Dark red ground — closing moment */
-    background: rgba(130, 6, 6, 0.94);
+    background: rgba(130, 6, 6, 0.92);
 }
 
 .access-inner {
     position: relative;
     z-index: 2;
     text-align: center;
-    max-width: 600px;
-    padding: 7rem 2rem;
+    width: 100%;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 7rem 4rem;
+    /* Discreet frosted layer inside the red section */
+    background: rgba(0, 0, 0, 0.18);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
 /* ─── Shared eyebrow ─── */
@@ -456,17 +1105,30 @@ header {
 }
 
 /* ══════════════════════════════════════════════════
+   RESPONSIVE — 1100px
+══════════════════════════════════════════════════ */
+@media (max-width: 1100px) {
+    .portfolio-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ══════════════════════════════════════════════════
    RESPONSIVE — 900px
 ══════════════════════════════════════════════════ */
 @media (max-width: 900px) {
 
     /* Cinematic hero — mobile */
     .cinematic-inner {
-        padding: 6rem 1.8rem 3rem;
+        padding: 6rem 5vw 3rem;
     }
 
-    .cin-title {
-        font-size: 2.6rem;
+    .cin-center-glass {
+        padding: 2.5rem 2rem;
+    }
+
+    .cin-brand-name {
+        font-size: clamp(3rem, 12vw, 6rem);
     }
 
     .cin-bottom {
@@ -477,6 +1139,10 @@ header {
 
     .cin-scroll-hint {
         display: none;
+    }
+
+    .cin-metrics {
+        gap: 1.5rem;
     }
 
     /* Red strips — horizontal on mobile */
@@ -492,12 +1158,12 @@ header {
 
     /* Offer section */
     .offer-section {
-        padding: 0 1.5rem;
+        padding: 0;
     }
 
     .offer-inner {
         flex-direction: column;
-        padding: 4rem 0;
+        padding: 4rem 5vw;
         gap: 3rem;
         text-align: center;
     }
@@ -511,9 +1177,14 @@ header {
     }
 
     /* Practice */
+    .practice-section {
+        padding: 6rem 5vw;
+    }
+
     .practice-section .practice-grid {
         grid-template-columns: 1fr;
-        padding: 2rem 1.5rem;
+        padding: 2.5rem 2rem;
+        max-width: 100%;
     }
 
     /* Method */
@@ -523,8 +1194,10 @@ header {
 
     .method-section .method-text {
         text-align: center;
-        padding: 4rem 2rem;
+        padding: 4rem 5vw;
         max-width: 100%;
+        border-left: none;
+        border-top: 0.5px solid rgba(149, 8, 8, 0.15);
     }
 
     /* Access stats */
@@ -534,5 +1207,75 @@ header {
 
     .stat-sep {
         display: none;
+    }
+
+    /* Portfolio */
+    .portfolio-inner {
+        padding: 0 5vw;
+    }
+
+    .portfolio-feature-img {
+        height: 50vh;
+    }
+
+    .portfolio-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem;
+    }
+
+    .maquette-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .maquette-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .maquette-sub {
+        text-align: left;
+    }
+
+    /* Lead form */
+    .lead-section {
+        padding: 6rem 0;
+    }
+
+    .lead-inner {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        padding: 0 5vw;
+    }
+
+    .lead-text {
+        padding: 2.5rem 2rem;
+        text-align: center;
+    }
+
+    .lead-form {
+        padding: 2.5rem 2rem;
+    }
+
+    /* Access section */
+    .access-inner {
+        padding: 5rem 5vw;
+    }
+}
+
+@media (max-width: 600px) {
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cin-metric-sep {
+        display: none;
+    }
+
+    .portfolio-header-glass {
+        padding: 2rem;
+    }
+
+    .offer-text {
+        padding: 2rem 1.5rem;
     }
 }
