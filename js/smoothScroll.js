@@ -24,7 +24,7 @@
 
         /* Any direct children that aren't already .fade-in */
         const contentBoxes = section.querySelectorAll(
-            '.section-text, .portfolio-header-glass, .portfolio-feature, .portfolio-grid, .maquette-row, ' +
+            '.section-text, .gallery-header, .gallery-work, .gallery-objects, .gallery-footer, ' +
             '.offer-text, .offer-card, .practice-grid, .method-text, .lead-text, .lead-form, ' +
             '.access-inner, .access-stats, .btn-group-access'
         );
@@ -64,20 +64,22 @@
         });
     }
 
-    /* ── Portfolio feature image slow parallax ── */
-    const featImg = document.querySelector('.portfolio-feature-img img');
-    if (featImg) {
-        gsap.to(featImg, {
-            yPercent: 8,
+
+    /* ── Gallery work images: subtle parallax on each ── */
+    const galleryImgs = document.querySelectorAll('.gallery-work-img img');
+    galleryImgs.forEach(img => {
+        gsap.to(img, {
+            yPercent: 6,
             ease: 'none',
             scrollTrigger: {
-                trigger: featImg.closest('.portfolio-feature'),
+                trigger: img.closest('.gallery-work'),
                 start: 'top bottom',
                 end: 'bottom top',
                 scrub: true
             }
         });
-    }
+    });
+
 
     /* ── Header opacity: becomes slightly more opaque mid-scroll ── */
     /* (already handled by script.js but this adds a tween for smoother feel) */

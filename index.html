@@ -158,132 +158,117 @@
         </section>
 
         <!-- ────────────────────────────────────────
-             SECTION 3 — PORTFOLIO GALLERY
-             "The Work" — showcase designs for UHNWIs
+             SECTION 3 — GALLERY
+             Private art gallery experience. Close-up. Silent. Precise.
         ──────────────────────────────────────── -->
-        <section class="home-section portfolio-section" id="portfolio">
-            <div class="portfolio-inner">
-                <div class="portfolio-header fade-in">
-                    <div class="portfolio-header-glass">
-                        <span class="section-eyebrow">Selected Works</span>
-                        <h2 class="motto signature-font">The Collection</h2>
-                        <p class="section-body portfolio-intro">Each environment is conceived as a collectible object
-                            — singular in its material vocabulary, irreproducible in its atmosphere.</p>
+        <section class="home-section gallery-section" id="portfolio">
+            <div class="gallery-inner">
+
+                <!-- Gallery header — minimal, left-aligned -->
+                <div class="gallery-header fade-in">
+                    <span class="section-eyebrow">Selected Works</span>
+                    <h2 class="gallery-title signature-font">The Collection</h2>
+                    <div class="gallery-header-line"></div>
+                </div>
+
+                <!-- Work 001 — Full bleed, portrait crop -->
+                <article class="gallery-work fade-in" data-num="001">
+                    <div class="gallery-work-img">
+                        <img src="assets/sq_img_4.jpg" alt="Private Bedroom Suite — Baron Bacot" loading="lazy">
+                        <div class="gallery-work-burn"></div>
+                    </div>
+                    <div class="gallery-work-caption">
+                        <span class="gwc-num">001</span>
+                        <div class="gwc-body">
+                            <p class="gwc-title">Private Bedroom Suite</p>
+                            <p class="gwc-medium">Interior Architecture</p>
+                            <p class="gwc-detail">Private Residence · Dubai · 2024</p>
+                        </div>
+                        <div class="gwc-line"></div>
+                    </div>
+                </article>
+
+                <!-- Work 002 — Full bleed, landscape close-up -->
+                <article class="gallery-work gallery-work--reverse fade-in" data-num="002">
+                    <div class="gallery-work-img">
+                        <img src="assets/sq_img_1.jpg" alt="Private Kitchen — Green Marble & Copper" loading="lazy">
+                        <div class="gallery-work-burn"></div>
+                    </div>
+                    <div class="gallery-work-caption">
+                        <span class="gwc-num">002</span>
+                        <div class="gwc-body">
+                            <p class="gwc-title">Private Kitchen</p>
+                            <p class="gwc-medium">Interior Architecture · Material Curation</p>
+                            <p class="gwc-detail">Green Marble & Burnished Copper · 2024</p>
+                        </div>
+                        <div class="gwc-line"></div>
+                    </div>
+                </article>
+
+                <!-- Work 003 — Wide panoramic -->
+                <article class="gallery-work fade-in" data-num="003">
+                    <div class="gallery-work-img">
+                        <img src="assets/sq_img_2.jpg" alt="Maritime Commission — Superyacht Dubai" loading="lazy">
+                        <div class="gallery-work-burn"></div>
+                    </div>
+                    <div class="gallery-work-caption">
+                        <span class="gwc-num">003</span>
+                        <div class="gwc-body">
+                            <p class="gwc-title">Maritime Commission</p>
+                            <p class="gwc-medium">Naval Interior Architecture</p>
+                            <p class="gwc-detail">Superyacht · Dubai Waters · 2025</p>
+                        </div>
+                        <div class="gwc-line"></div>
+                    </div>
+                </article>
+
+                <!-- Objects row — smaller, side by side, like gallery vitrine -->
+                <div class="gallery-objects fade-in">
+                    <div class="gallery-object">
+                        <div class="gallery-object-img">
+                            <img src="assets/collectible_decor_1.png" alt="Collectible Bronze — Baron Bacot"
+                                loading="lazy">
+                        </div>
+                        <div class="gallery-object-label">
+                            <span class="gol-num">004</span>
+                            <span class="gol-title">Collectible Bronze</span>
+                            <span class="gol-sub">Object Design · Ed. 1/1</span>
+                        </div>
+                    </div>
+                    <div class="gallery-object">
+                        <div class="gallery-object-img">
+                            <img src="assets/collectible_decor_2.png" alt="Sculptural Vessel — Baron Bacot"
+                                loading="lazy">
+                        </div>
+                        <div class="gallery-object-label">
+                            <span class="gol-num">005</span>
+                            <span class="gol-title">Sculptural Vessel</span>
+                            <span class="gol-sub">Hand-blown · Ed. 1/3</span>
+                        </div>
+                    </div>
+                    <div class="gallery-object">
+                        <div class="gallery-object-img">
+                            <img src="assets/collectible_decor_3.png" alt="Decorative Object — Baron Bacot"
+                                loading="lazy">
+                        </div>
+                        <div class="gallery-object-label">
+                            <span class="gol-num">006</span>
+                            <span class="gol-title">Decorative Object</span>
+                            <span class="gol-sub">Limited Edition · 2025</span>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Large feature image -->
-                <div class="portfolio-feature fade-in">
-                    <div class="portfolio-feature-img">
-                        <img src="assets/sq_img_4.jpg" alt="Baron Bacot — Private Residence, Bedroom Suite"
-                            loading="lazy">
-                        <div class="portfolio-img-overlay">
-                            <div class="portfolio-burn-strip"></div>
-                            <div class="portfolio-img-caption">
-                                <span class="portfolio-caption-num">001</span>
-                                <span class="portfolio-caption-title">Private Bedroom Suite</span>
-                                <span class="portfolio-caption-tag">Residential</span>
-                            </div>
-                        </div>
-                    </div>
+                <!-- Gallery footer note -->
+                <div class="gallery-footer fade-in">
+                    <p class="gallery-footer-note">All commissions are unique. No work is ever reproduced.</p>
+                    <a href="https://calendly.com/amaury-bacot/30min" class="gallery-footer-cta" target="_blank"
+                        rel="noopener noreferrer">Discuss a Commission</a>
                 </div>
 
-                <!-- Grid of smaller works -->
-                <div class="portfolio-grid fade-in">
-                    <div class="portfolio-item">
-                        <div class="portfolio-item-img">
-                            <img src="assets/sq_img_1.jpg" alt="Baron Bacot — Private Kitchen, Green Marble"
-                                loading="lazy">
-                            <div class="portfolio-item-overlay">
-                                <div class="portfolio-item-burn"></div>
-                            </div>
-                        </div>
-                        <div class="portfolio-item-info">
-                            <span class="portfolio-item-num">002</span>
-                            <div>
-                                <p class="portfolio-item-title">Private Kitchen</p>
-                                <p class="portfolio-item-tag">Residential · Green Marble & Copper</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="portfolio-item">
-                        <div class="portfolio-item-img">
-                            <img src="assets/sq_img_2.jpg" alt="Baron Bacot — Superyacht Commission, Dubai"
-                                loading="lazy">
-                            <div class="portfolio-item-overlay">
-                                <div class="portfolio-item-burn"></div>
-                            </div>
-                        </div>
-                        <div class="portfolio-item-info">
-                            <span class="portfolio-item-num">003</span>
-                            <div>
-                                <p class="portfolio-item-title">Maritime Commission</p>
-                                <p class="portfolio-item-tag">Superyacht · Dubai Waters</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="portfolio-item">
-                        <div class="portfolio-item-img">
-                            <img src="assets/collectible_decor_1.png" alt="Baron Bacot — Collectible Bronze Sculpture"
-                                loading="lazy">
-                            <div class="portfolio-item-overlay">
-                                <div class="portfolio-item-burn"></div>
-                            </div>
-                        </div>
-                        <div class="portfolio-item-info">
-                            <span class="portfolio-item-num">004</span>
-                            <div>
-                                <p class="portfolio-item-title">Collectible Bronze</p>
-                                <p class="portfolio-item-tag">Object Design · Limited Edition</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="portfolio-item">
-                        <div class="portfolio-item-img">
-                            <img src="assets/collectible_decor_2.png" alt="Baron Bacot — Sculptural Vessel"
-                                loading="lazy">
-                            <div class="portfolio-item-overlay">
-                                <div class="portfolio-item-burn"></div>
-                            </div>
-                        </div>
-                        <div class="portfolio-item-info">
-                            <span class="portfolio-item-num">005</span>
-                            <div>
-                                <p class="portfolio-item-title">Sculptural Vessel</p>
-                                <p class="portfolio-item-tag">Object Design · Hand-blown</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Maquette row — architectural models -->
-                <div class="maquette-row fade-in">
-                    <div class="maquette-header">
-                        <span class="section-eyebrow" style="margin-bottom: 0;">Architectural Maquettes</span>
-                        <p class="maquette-sub">Each commission begins with a collectible scale model — a jewel unto
-                            itself.</p>
-                    </div>
-                    <div class="maquette-grid">
-                        <div class="maquette-item">
-                            <img src="assets/maquette_bedroom.png" alt="Maquette — Superyacht Bedroom Suite"
-                                loading="lazy">
-                            <p class="maquette-label">Superyacht Suite</p>
-                        </div>
-                        <div class="maquette-item">
-                            <img src="assets/maquette_living.png" alt="Maquette — Private Kitchen" loading="lazy">
-                            <p class="maquette-label">Private Kitchen</p>
-                        </div>
-                        <div class="maquette-item">
-                            <img src="assets/maquette_library.png" alt="Maquette — Private Library" loading="lazy">
-                            <p class="maquette-label">Private Residence</p>
-                        </div>
-                    </div>
-                </div>
             </div>
         </section>
+
 
         <!-- ────────────────────────────────────────
              SECTION 4 — OFFER (product card)

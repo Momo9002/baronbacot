@@ -312,6 +312,29 @@
         delay: 0.5
     });
 
+    /* ═══════════════════════════════════════════════════════════════
+       CANVAS OPACITY — section-aware presence
+       Hero: full · Middle sections: ghosted · Final CTA: full again
+       The canvas itself fades; particles remain but are discreet.
+    ═══════════════════════════════════════════════════════════════ */
+    const canvasEl = document.querySelector('.home-canvas-container');
+
+    // Sections: [0]=hero [1]=statement [2]=portfolio [3]=offer [4]=practice [5]=method [6]=lead [7]=access
+    const sectionOpacities = [1.0, 0.25, 0.15, 0.22, 0.20, 0.25, 0.18, 0.9];
+    const allSections = document.querySelectorAll('.home-section');
+
+    allSections.forEach((sec, i) => {
+        const targetOpacity = sectionOpacities[i] ?? 0.2;
+
+        ScrollTrigger.create({
+            trigger: sec,
+            start: 'top 60%',
+            end: 'bottom 40%',
+            onEnter: () => gsap.to(canvasEl, { opacity: targetOpacity, duration: 1.4, ease: 'power2.inOut' }),
+            onEnterBack: () => gsap.to(canvasEl, { opacity: targetOpacity, duration: 1.4, ease: 'power2.inOut' }),
+        });
+    });
+
     /* ─── Parallax: mouse moves the whole nebula slightly ─── */
     let tX = 0, tY = 0;
     document.addEventListener('mousemove', e => {

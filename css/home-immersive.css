@@ -375,15 +375,307 @@
 }
 
 /* ══════════════════════════════════════════════════
-   SECTION 3 — PORTFOLIO GALLERY
-   "The Work" — full-width edge-to-edge layout
+   SECTION 3 — PRIVATE ART GALLERY
+   Close-up. Precise. Silent. Gagosian-level.
 ══════════════════════════════════════════════════ */
-.portfolio-section {
+.gallery-section {
     min-height: auto;
-    padding: 8rem 0;
+    padding: 10rem 0 8rem;
     display: block;
     align-items: unset;
+    background: rgba(4, 4, 4, 0.92);
 }
+
+.gallery-inner {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+}
+
+/* ─── Gallery header — left-aligned, minimal ─── */
+.gallery-header {
+    padding: 0 6vw 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.gallery-title {
+    font-family: var(--font-motto), serif;
+    font-size: clamp(2.8rem, 6vw, 5.5rem);
+    font-weight: normal;
+    color: var(--white);
+    letter-spacing: 0.04em;
+    line-height: 1;
+    margin: 0;
+}
+
+.gallery-header-line {
+    width: 48px;
+    height: 0.5px;
+    background: rgba(149, 8, 8, 0.7);
+    margin-top: 0.5rem;
+}
+
+/* ─── Each work: large image + side caption ─── */
+.gallery-work {
+    display: grid;
+    grid-template-columns: 1fr 260px;
+    margin-bottom: 2px;
+    /* hairline gap between works */
+    min-height: 72vh;
+    overflow: hidden;
+}
+
+/* Reverse: caption on left */
+.gallery-work--reverse {
+    grid-template-columns: 260px 1fr;
+}
+
+.gallery-work--reverse .gallery-work-img {
+    order: 2;
+}
+
+.gallery-work--reverse .gallery-work-caption {
+    order: 1;
+    border-left: none;
+    border-right: 0.5px solid rgba(255, 255, 255, 0.05);
+    align-items: flex-end;
+    text-align: right;
+}
+
+.gallery-work--reverse .gwc-line {
+    transform-origin: right;
+}
+
+/* Image — close-up, full fill, very slight zoom on hover */
+.gallery-work-img {
+    position: relative;
+    overflow: hidden;
+    background: #080808;
+}
+
+.gallery-work-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+    /* close-up: focus upper content */
+    display: block;
+    transform: scale(1.04);
+    transition: transform 1.4s cubic-bezier(0.4, 0, 0.2, 1);
+    filter: brightness(0.88) contrast(1.05);
+}
+
+.gallery-work:hover .gallery-work-img img {
+    transform: scale(1.0);
+    filter: brightness(0.95) contrast(1.05);
+}
+
+/* Subtle red burn on the image edge */
+.gallery-work-burn {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, rgba(149, 8, 8, 0.18) 0%, transparent 40%);
+    pointer-events: none;
+    z-index: 1;
+    transition: opacity 0.8s ease;
+}
+
+.gallery-work--reverse .gallery-work-burn {
+    background: linear-gradient(to left, rgba(149, 8, 8, 0.18) 0%, transparent 40%);
+}
+
+/* Caption panel — gallery label aesthetic */
+.gallery-work-caption {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding: 3rem 2.5rem;
+    gap: 1.5rem;
+    border-left: 0.5px solid rgba(255, 255, 255, 0.05);
+    background: rgba(5, 5, 5, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* Work number — gallery label style */
+.gwc-num {
+    font-family: var(--font-ui), sans-serif;
+    font-size: 0.48rem;
+    letter-spacing: 0.35em;
+    color: rgba(149, 8, 8, 0.6);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: auto;
+    padding-top: 1rem;
+    /* Push number to top */
+    align-self: flex-start;
+    order: -1;
+}
+
+.gallery-work--reverse .gwc-num {
+    align-self: flex-end;
+}
+
+.gwc-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.gwc-title {
+    font-family: var(--font-body), serif;
+    font-size: clamp(1.1rem, 2vw, 1.6rem);
+    color: var(--white);
+    line-height: 1.15;
+    margin: 0;
+    letter-spacing: 0.02em;
+}
+
+.gwc-medium {
+    font-family: var(--font-ui), sans-serif;
+    font-size: 0.52rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: rgba(255, 255, 255, 0.5);
+    margin: 0;
+}
+
+.gwc-detail {
+    font-family: var(--font-ui), sans-serif;
+    font-size: 0.48rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: rgba(255, 255, 255, 0.25);
+    margin: 0;
+}
+
+/* Thin red accent line at bottom of caption */
+.gwc-line {
+    width: 32px;
+    height: 0.5px;
+    background: rgba(149, 8, 8, 0.5);
+    transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.gallery-work:hover .gwc-line {
+    width: 64px;
+}
+
+/* ─── Objects vitrine row ─── */
+.gallery-objects {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin: 2px 0;
+}
+
+.gallery-object {
+    background: rgba(6, 6, 6, 0.96);
+    overflow: hidden;
+    transition: background 0.4s ease;
+}
+
+.gallery-object:hover {
+    background: rgba(10, 10, 10, 1);
+}
+
+.gallery-object-img {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 4 / 5;
+}
+
+.gallery-object-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transform: scale(1.06);
+    transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    filter: brightness(0.82) contrast(1.08) saturate(0.9);
+}
+
+.gallery-object:hover .gallery-object-img img {
+    transform: scale(1.0);
+    filter: brightness(0.92) contrast(1.05) saturate(1.0);
+}
+
+/* Gallery label — bottom of each object */
+.gallery-object-label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding: 1.4rem 2rem;
+    border-top: 0.5px solid rgba(255, 255, 255, 0.04);
+}
+
+.gol-num {
+    font-family: var(--font-ui), sans-serif;
+    font-size: 0.42rem;
+    letter-spacing: 0.3em;
+    color: rgba(149, 8, 8, 0.55);
+    text-transform: uppercase;
+}
+
+.gol-title {
+    font-family: var(--font-body), serif;
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.9);
+    letter-spacing: 0.02em;
+}
+
+.gol-sub {
+    font-family: var(--font-ui), sans-serif;
+    font-size: 0.45rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: rgba(255, 255, 255, 0.25);
+}
+
+/* ─── Gallery footer ─── */
+.gallery-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 3.5rem 6vw;
+    border-top: 0.5px solid rgba(255, 255, 255, 0.04);
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.gallery-footer-note {
+    font-family: var(--font-ui), sans-serif;
+    font-size: 0.52rem;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: rgba(255, 255, 255, 0.2);
+    margin: 0;
+}
+
+.gallery-footer-cta {
+    font-family: var(--font-ui), sans-serif;
+    font-size: 0.58rem;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: rgba(255, 255, 255, 0.65);
+    text-decoration: none;
+    border-bottom: 0.5px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 0.2rem;
+    transition: color 0.3s ease, border-color 0.3s ease;
+    white-space: nowrap;
+}
+
+.gallery-footer-cta:hover {
+    color: var(--white);
+    border-color: rgba(149, 8, 8, 0.6);
+}
+
+
 
 .portfolio-inner {
     position: relative;
@@ -1095,8 +1387,14 @@ header {
    RESPONSIVE — 1100px
 ══════════════════════════════════════════════════ */
 @media (max-width: 1100px) {
-    .portfolio-grid {
-        grid-template-columns: repeat(2, 1fr);
+
+    .gallery-work,
+    .gallery-work--reverse {
+        grid-template-columns: 1fr 200px;
+    }
+
+    .gallery-work--reverse {
+        grid-template-columns: 200px 1fr;
     }
 }
 
@@ -1196,18 +1494,41 @@ header {
         display: none;
     }
 
-    /* Portfolio */
-    .portfolio-inner {
-        padding: 0 5vw;
+
+
+    /* Gallery — mobile: stack image + caption vertically */
+    .gallery-work,
+    .gallery-work--reverse {
+        grid-template-columns: 1fr;
+        min-height: 60vh;
     }
 
-    .portfolio-feature-img {
-        height: 50vh;
+    .gallery-work--reverse .gallery-work-img {
+        order: 0;
     }
 
-    .portfolio-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 0.75rem;
+    .gallery-work--reverse .gallery-work-caption {
+        order: 1;
+    }
+
+    .gallery-work-caption,
+    .gallery-work--reverse .gallery-work-caption {
+        align-items: flex-start;
+        text-align: left;
+        border-left: none;
+        border-right: none;
+        border-top: 0.5px solid rgba(255, 255, 255, 0.05);
+        padding: 2rem 5vw;
+    }
+
+    .gallery-objects {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
     }
 
     .maquette-grid {
