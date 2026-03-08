@@ -376,14 +376,14 @@
 
 /* ══════════════════════════════════════════════════
    SECTION 3 — PRIVATE ART GALLERY
-   Close-up. Precise. Silent. Gagosian-level.
+   Mondrian-feeling. Quiet. Close-up. Silent. Precise.
 ══════════════════════════════════════════════════ */
 .gallery-section {
     min-height: auto;
-    padding: 10rem 0 8rem;
+    padding: 9rem 0 7rem;
     display: block;
     align-items: unset;
-    background: rgba(4, 4, 4, 0.92);
+    background: #050505;
 }
 
 .gallery-inner {
@@ -394,7 +394,7 @@
 
 /* ─── Gallery header — left-aligned, minimal ─── */
 .gallery-header {
-    padding: 0 6vw 5rem;
+    padding: 0 6vw 4.5rem;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -403,7 +403,7 @@
 
 .gallery-title {
     font-family: var(--font-motto), serif;
-    font-size: clamp(2.8rem, 6vw, 5.5rem);
+    font-size: clamp(2.4rem, 5vw, 4.8rem);
     font-weight: normal;
     color: var(--white);
     letter-spacing: 0.04em;
@@ -412,229 +412,156 @@
 }
 
 .gallery-header-line {
-    width: 48px;
+    width: 36px;
     height: 0.5px;
-    background: rgba(149, 8, 8, 0.7);
-    margin-top: 0.5rem;
+    background: rgba(149, 8, 8, 0.65);
+    margin-top: 0.4rem;
 }
 
-/* ─── Each work: large image + side caption ─── */
-.gallery-work {
+/* ══════════════════════════════════════════════════
+   MONDRIAN GRID
+   Two rows. Thick dark "wall" gaps. Geometric.
+   Row 1: large left cell + two stacked right cells
+   Row 2: single wide panoramic strip
+══════════════════════════════════════════════════ */
+.mondrian-grid {
     display: grid;
-    grid-template-columns: 1fr 260px;
-    margin-bottom: 2px;
-    /* hairline gap between works */
-    min-height: 72vh;
-    overflow: hidden;
+    /* 3-column base; cells span with grid-column */
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 10px;
+    /* thick dark gap = the "wall" */
+    padding: 0 6vw;
+    width: 100%;
+    box-sizing: border-box;
 }
 
-/* Reverse: caption on left */
-.gallery-work--reverse {
-    grid-template-columns: 260px 1fr;
-}
-
-.gallery-work--reverse .gallery-work-img {
-    order: 2;
-}
-
-.gallery-work--reverse .gallery-work-caption {
-    order: 1;
-    border-left: none;
-    border-right: 0.5px solid rgba(255, 255, 255, 0.05);
-    align-items: flex-end;
-    text-align: right;
-}
-
-.gallery-work--reverse .gwc-line {
-    transform-origin: right;
-}
-
-/* Image — close-up, full fill, very slight zoom on hover */
-.gallery-work-img {
-    position: relative;
+/* ─── Cells ─── */
+.mondrian-cell {
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
     background: #080808;
+    transition: background 0.5s ease;
 }
 
-.gallery-work-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 30%;
-    /* close-up: focus upper content */
-    display: block;
-    transform: scale(1.04);
-    transition: transform 1.4s cubic-bezier(0.4, 0, 0.2, 1);
-    filter: brightness(0.88) contrast(1.05);
+.mondrian-cell:hover {
+    background: #0c0c0c;
 }
 
-.gallery-work:hover .gallery-work-img img {
-    transform: scale(1.0);
-    filter: brightness(0.95) contrast(1.05);
+/* Tall left cell: spans full row height (2 rows) */
+.mondrian-cell--tall {
+    grid-column: 1 / 2;
+    grid-row: 1 / 3;
 }
 
-/* Subtle red burn on the image edge */
-.gallery-work-burn {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to right, rgba(149, 8, 8, 0.18) 0%, transparent 40%);
-    pointer-events: none;
-    z-index: 1;
-    transition: opacity 0.8s ease;
+/* Small top-right cell */
+.mondrian-cell--small {
+    grid-column: auto;
+    grid-row: auto;
 }
 
-.gallery-work--reverse .gallery-work-burn {
-    background: linear-gradient(to left, rgba(149, 8, 8, 0.18) 0%, transparent 40%);
+/* Wide bottom strip: full width across all 3 columns */
+.mondrian-cell--wide {
+    grid-column: 2 / 4;
+    grid-row: 2 / 3;
 }
 
-/* Caption panel — gallery label aesthetic */
-.gallery-work-caption {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: flex-start;
-    padding: 3rem 2.5rem;
-    gap: 1.5rem;
-    border-left: 0.5px solid rgba(255, 255, 255, 0.05);
-    background: rgba(5, 5, 5, 0.95);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-}
-
-/* Work number — gallery label style */
-.gwc-num {
-    font-family: var(--font-ui), sans-serif;
-    font-size: 0.48rem;
-    letter-spacing: 0.35em;
-    color: rgba(149, 8, 8, 0.6);
-    text-transform: uppercase;
-    display: block;
-    margin-bottom: auto;
-    padding-top: 1rem;
-    /* Push number to top */
-    align-self: flex-start;
-    order: -1;
-}
-
-.gallery-work--reverse .gwc-num {
-    align-self: flex-end;
-}
-
-.gwc-body {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-.gwc-title {
-    font-family: var(--font-body), serif;
-    font-size: clamp(1.1rem, 2vw, 1.6rem);
-    color: var(--white);
-    line-height: 1.15;
-    margin: 0;
-    letter-spacing: 0.02em;
-}
-
-.gwc-medium {
-    font-family: var(--font-ui), sans-serif;
-    font-size: 0.52rem;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    color: rgba(255, 255, 255, 0.5);
-    margin: 0;
-}
-
-.gwc-detail {
-    font-family: var(--font-ui), sans-serif;
-    font-size: 0.48rem;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: rgba(255, 255, 255, 0.25);
-    margin: 0;
-}
-
-/* Thin red accent line at bottom of caption */
-.gwc-line {
-    width: 32px;
-    height: 0.5px;
-    background: rgba(149, 8, 8, 0.5);
-    transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.gallery-work:hover .gwc-line {
-    width: 64px;
-}
-
-/* ─── Objects vitrine row ─── */
-.gallery-objects {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-    margin: 2px 0;
-}
-
-.gallery-object {
-    background: rgba(6, 6, 6, 0.96);
-    overflow: hidden;
-    transition: background 0.4s ease;
-}
-
-.gallery-object:hover {
-    background: rgba(10, 10, 10, 1);
-}
-
-.gallery-object-img {
+/* ─── Image wrapper inside each cell ─── */
+.mondrian-img-wrap {
     position: relative;
     overflow: hidden;
-    aspect-ratio: 4 / 5;
+    flex: 1;
 }
 
-.gallery-object-img img {
+/* --tall drives height via its stacked neighbours */
+.mondrian-cell--tall .mondrian-img-wrap {
+    min-height: 68vh;
+}
+
+.mondrian-cell--small .mondrian-img-wrap {
+    height: 34vh;
+}
+
+.mondrian-cell--wide .mondrian-img-wrap {
+    height: 34vh;
+}
+
+.mondrian-img-wrap img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center;
     display: block;
-    transform: scale(1.06);
-    transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-    filter: brightness(0.82) contrast(1.08) saturate(0.9);
+    /* Slight scale: restrained breathing on hover */
+    transform: scale(1.03);
+    transition: transform 1.6s cubic-bezier(0.4, 0, 0.2, 1),
+        filter 0.8s ease;
+    filter: brightness(0.84) contrast(1.06) saturate(0.92);
 }
 
-.gallery-object:hover .gallery-object-img img {
+.mondrian-cell:hover .mondrian-img-wrap img {
     transform: scale(1.0);
-    filter: brightness(0.92) contrast(1.05) saturate(1.0);
+    filter: brightness(0.92) contrast(1.04) saturate(1.0);
 }
 
-/* Gallery label — bottom of each object */
-.gallery-object-label {
+/* Very subtle red edge on hover — barely perceptible */
+.mondrian-img-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom right,
+            rgba(149, 8, 8, 0.07) 0%,
+            transparent 50%);
+    opacity: 0;
+    transition: opacity 0.9s ease;
+    pointer-events: none;
+}
+
+.mondrian-cell:hover .mondrian-img-wrap::after {
+    opacity: 1;
+}
+
+/* ─── Museum label — below each image ─── */
+.mondrian-label {
     display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-    padding: 1.4rem 2rem;
-    border-top: 0.5px solid rgba(255, 255, 255, 0.04);
+    align-items: baseline;
+    gap: 1.4rem;
+    padding: 1.1rem 1.6rem 1.2rem;
+    border-top: 0.5px solid rgba(255, 255, 255, 0.05);
+    /* pure gallery wall white-line separator */
+    flex-shrink: 0;
 }
 
-.gol-num {
+.ml-num {
     font-family: var(--font-ui), sans-serif;
     font-size: 0.42rem;
-    letter-spacing: 0.3em;
-    color: rgba(149, 8, 8, 0.55);
+    letter-spacing: 0.35em;
+    color: rgba(149, 8, 8, 0.5);
     text-transform: uppercase;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
-.gol-title {
+.ml-title {
     font-family: var(--font-body), serif;
-    font-size: 1.05rem;
-    color: rgba(255, 255, 255, 0.9);
+    font-size: clamp(0.82rem, 1.2vw, 1.05rem);
+    color: rgba(255, 255, 255, 0.88);
     letter-spacing: 0.02em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.gol-sub {
+.ml-sub {
     font-family: var(--font-ui), sans-serif;
-    font-size: 0.45rem;
+    font-size: 0.44rem;
     text-transform: uppercase;
     letter-spacing: 0.18em;
-    color: rgba(255, 255, 255, 0.25);
+    color: rgba(255, 255, 255, 0.22);
+    margin-left: auto;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 /* ─── Gallery footer ─── */
@@ -642,10 +569,11 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 3.5rem 6vw;
+    padding: 3rem 6vw;
     border-top: 0.5px solid rgba(255, 255, 255, 0.04);
     gap: 2rem;
     flex-wrap: wrap;
+    margin-top: 10px;
 }
 
 .gallery-footer-note {
@@ -1388,13 +1316,25 @@ header {
 ══════════════════════════════════════════════════ */
 @media (max-width: 1100px) {
 
-    .gallery-work,
-    .gallery-work--reverse {
-        grid-template-columns: 1fr 200px;
+    /* Mondrian grid — 2 columns at medium screen */
+    .mondrian-grid {
+        grid-template-columns: 3fr 2fr;
+        gap: 8px;
     }
 
-    .gallery-work--reverse {
-        grid-template-columns: 200px 1fr;
+    .mondrian-cell--tall {
+        grid-column: 1 / 2;
+        grid-row: 1 / 3;
+    }
+
+    .mondrian-cell--small {
+        grid-column: 2 / 3;
+        grid-row: auto;
+    }
+
+    .mondrian-cell--wide {
+        grid-column: 2 / 3;
+        grid-row: auto;
     }
 }
 
@@ -1496,33 +1436,35 @@ header {
 
 
 
-    /* Gallery — mobile: stack image + caption vertically */
-    .gallery-work,
-    .gallery-work--reverse {
+    /* Gallery — mobile: single column Mondrian */
+    .mondrian-grid {
         grid-template-columns: 1fr;
-        min-height: 60vh;
+        gap: 6px;
+        padding: 0 4vw;
     }
 
-    .gallery-work--reverse .gallery-work-img {
-        order: 0;
+    .mondrian-cell--tall,
+    .mondrian-cell--small,
+    .mondrian-cell--wide {
+        grid-column: 1 / -1;
+        grid-row: auto;
     }
 
-    .gallery-work--reverse .gallery-work-caption {
-        order: 1;
+    .mondrian-cell--tall .mondrian-img-wrap {
+        min-height: 52vw;
     }
 
-    .gallery-work-caption,
-    .gallery-work--reverse .gallery-work-caption {
-        align-items: flex-start;
-        text-align: left;
-        border-left: none;
-        border-right: none;
-        border-top: 0.5px solid rgba(255, 255, 255, 0.05);
-        padding: 2rem 5vw;
+    .mondrian-cell--small .mondrian-img-wrap,
+    .mondrian-cell--wide .mondrian-img-wrap {
+        height: 52vw;
     }
 
-    .gallery-objects {
-        grid-template-columns: 1fr;
+    .mondrian-label {
+        flex-wrap: wrap;
+    }
+
+    .ml-sub {
+        margin-left: 0;
     }
 
     .gallery-footer {
